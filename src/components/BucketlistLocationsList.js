@@ -1,12 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
 import BucketlistLocationsListItem from './BucketlistLocationsListItem';
-
-// const List = styled.ul`
-//   margin: 0;
-//   padding: 0;
-//   width: 100%;
-// `;
 
 function BucketlistLocationsList({ locations, setViewport, viewport }) {
   

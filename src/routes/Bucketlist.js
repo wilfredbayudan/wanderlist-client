@@ -44,7 +44,7 @@ function Bucketlist({ viewport, setViewport, setMarkers, bucketlist, setBucketli
         })
         .catch(err => console.log(err));
     }
-  }, [params.id, setBucketlist, setDisplayContent, bucketlist, setCurrentList, setMarkers])
+  }, [params.id, setBucketlist, setDisplayContent, bucketlist, setCurrentList, setMarkers, setViewport, viewport])
 
   if (bucketlist) {
 

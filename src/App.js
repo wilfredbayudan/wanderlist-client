@@ -8,6 +8,7 @@ import Bucketlists from './routes/Bucketlists.js';
 import Destinations from './routes/Destinations.js';
 import LoaderOverlay from './components/LoaderOverlay';
 import Bucketlist from './routes/Bucketlist';
+import BucketlistNew from './routes/BucketlistNew';
 
 const App = () => {
 
@@ -31,7 +32,8 @@ const App = () => {
       <MainContent displayContent={displayContent} setDisplayContent={setDisplayContent}>
         <Routes>
           <Route exact path="/" element={<Bucketlists setBucketlist={setBucketlist} bucketlists={bucketlists} setBucketlists={setBucketlists} setDisplayContent={setDisplayContent} setMarkers={setMarkers} setCurrentList={setCurrentList} setLoaderStatus={setLoaderStatus} />} />
-          <Route path="/bucketlists/:id" element={<Bucketlist viewport={viewport} setViewport={setViewport} setMarkers={setMarkers} setCurrentList={setCurrentList} bucketlist={bucketlist} setBucketlist={setBucketlist} setLoaderStatus={setLoaderStatus} setDisplayContent={setDisplayContent}/>} />
+          <Route exact path="/bucketlists/new" element={<BucketlistNew />} />
+          <Route exact path="/bucketlists/:id" element={<Bucketlist viewport={viewport} setViewport={setViewport} setMarkers={setMarkers} setCurrentList={setCurrentList} bucketlist={bucketlist} setBucketlist={setBucketlist} setLoaderStatus={setLoaderStatus} setDisplayContent={setDisplayContent}/>} />
           <Route exact path="/destinations" element={<Destinations />} />
         </Routes> 
       </MainContent>
