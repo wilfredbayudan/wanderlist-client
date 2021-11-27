@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import mapLocationData from '../functions/mapLocationData';
+import { FlyToInterpolator } from 'react-map-gl';
+import { easeCubic } from 'd3-ease';
 
 const Bucketlist = styled.li`
   padding: 10px;
@@ -33,7 +35,7 @@ const CreatedBy = styled.span`
   color: #696969;
 `;
 
-const BucketlistListItem = ({ bucketlist, setMarkers, setCurrentList, setBucketlist, setLoaderStatus }) => {
+const BucketlistListItem = ({ bucketlist, setMarkers, setCurrentList, setBucketlist, setLoaderStatus, viewport, setViewport }) => {
 
   const navigate = useNavigate();
 
@@ -42,6 +44,15 @@ const BucketlistListItem = ({ bucketlist, setMarkers, setCurrentList, setBucketl
   function assignMarkers() {
     setMarkers(coordinates);
     setCurrentList({ name: bucketlist.name, created_by: bucketlist.created_by })
+    setViewport({
+      ...viewport,
+      latitude: 11.1784,
+      longitude: 90.8129,
+      zoom: 1,
+      transitionDuration: 2000,
+      transitionInterpolator: new FlyToInterpolator(),
+      transitionEasing: easeCubic
+    });
   }
 
   function handleClick() {

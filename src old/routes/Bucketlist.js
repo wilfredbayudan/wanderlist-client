@@ -27,7 +27,6 @@ function Bucketlist({ viewport, setViewport, setMarkers, bucketlist, setBucketli
       setCurrentList({ name: bucketlist.name, created_by: bucketlist.created_by });
       setMarkers(mapLocationData(bucketlist.bucketlist_locations));
       setViewport({
-        ...viewport,
         latitude: 11.1784,
         longitude: 90.8129,
         zoom: 1,
@@ -44,7 +43,7 @@ function Bucketlist({ viewport, setViewport, setMarkers, bucketlist, setBucketli
         })
         .catch(err => console.log(err));
     }
-  }, [params.id, setBucketlist, setDisplayContent, bucketlist, setCurrentList, setMarkers, setViewport, viewport])
+  }, [params.id, setBucketlist, setDisplayContent, bucketlist, setCurrentList, setMarkers, setViewport])
 
   if (bucketlist) {
 

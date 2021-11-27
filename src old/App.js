@@ -31,7 +31,7 @@ const App = () => {
       <Header />
       <MainContent displayContent={displayContent} setDisplayContent={setDisplayContent}>
         <Routes>
-          <Route exact path="/" element={<Bucketlists setBucketlist={setBucketlist} bucketlists={bucketlists} setBucketlists={setBucketlists} setDisplayContent={setDisplayContent} setMarkers={setMarkers} setCurrentList={setCurrentList} setLoaderStatus={setLoaderStatus} />} />
+          <Route exact path="/" element={<Bucketlists setBucketlist={setBucketlist} bucketlists={bucketlists} setBucketlists={setBucketlists} setDisplayContent={setDisplayContent} setMarkers={setMarkers} setCurrentList={setCurrentList} setLoaderStatus={setLoaderStatus} viewport={viewport} setViewport={setViewport} />} />
           <Route exact path="/bucketlists/new" element={<BucketlistNew />} />
           <Route exact path="/bucketlists/:id" element={<Bucketlist viewport={viewport} setViewport={setViewport} setMarkers={setMarkers} setCurrentList={setCurrentList} bucketlist={bucketlist} setBucketlist={setBucketlist} setLoaderStatus={setLoaderStatus} setDisplayContent={setDisplayContent}/>} />
           <Route exact path="/destinations" element={<Destinations />} />

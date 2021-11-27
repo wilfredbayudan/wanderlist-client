@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import BucketlistList from '../components/BucketlistList';
 import LoaderOverlay from '../components/LoaderOverlay';
 
-const Bucketlists = ({ bucketlists, setMarkers, setCurrentList, setBucketlist, setBucketlists, setDisplayContent, setLoaderStatus }) => {
+const Bucketlists = ({ viewport, setViewport, bucketlists, setMarkers, setCurrentList, setBucketlist, setBucketlists, setDisplayContent, setLoaderStatus }) => {
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_WANDERLIST_API}/bucketlists`)
@@ -19,7 +19,7 @@ const Bucketlists = ({ bucketlists, setMarkers, setCurrentList, setBucketlist, s
   if (bucketlists) {
     return (
       <div>
-        <BucketlistList setLoaderStatus={setLoaderStatus} setBucketlist={setBucketlist} bucketlists={bucketlists} setMarkers={setMarkers} setCurrentList={setCurrentList} />
+        <BucketlistList viewport={viewport} setViewport={setViewport} setLoaderStatus={setLoaderStatus} setBucketlist={setBucketlist} bucketlists={bucketlists} setMarkers={setMarkers} setCurrentList={setCurrentList} />
       </div>
     )
   }
