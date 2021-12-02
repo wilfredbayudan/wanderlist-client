@@ -1,0 +1,108 @@
+import React, { useEffect, useState } from 'react';
+import { useParams, useSearchParams } from 'react-router-dom';
+import LoaderOverlay from '../../../components/LoaderOverlay';
+import styled from 'styled-components';
+import timeAgo from '../../../utils/timeAgo';
+import mapLocationData from '../../../utils/mapLocationData';
+import BucketlistLocationsList from './BucketlistLocationsList';
+import { FlyToInterpolator } from 'react-map-gl';
+import { easeCubic } from 'd3-ease';
+import TextField from '@mui/material/TextField';
+import DestinationSearch from '../manage/DestinationSearch';
+
+const BucketlistHeader = styled.div`
+  width: 100%;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+`;
+
+const LastUpdated = styled.span`
+  font-size: 0.8em;
+  color: #696969;
+`;
+
+function Bucketlist( { appState }) {
+
+  const { setViewport, setMarkers, setDisplayContent, setCurrentList, bucketlist, setBucketlist } = appState;
+
+  const [isAuth, setIsAuth] = useState(false);
+
+  const params = useParams();
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const authPin = searchParams.get('pin');
+
+  useEffect(() => {
+    if (bucketlist && "pin" in bucketlist) {
+      console.log('YUP');
+      setIsAuth(true);
+    } else if (params.id && authPin) {
+      fetch(`${process.env.REACT_APP_WANDERLIST_API}/bucketlists/${params.id}/auth`, {
+        headers: {
+          'PIN': authPin
+        }
+      })
+        .then(res => res.json())
+        .then(json => {
+          setIsAuth(json.permission);
+        })
+        .catch(err => console.log(err))
+    }
+  }, [bucketlist, params.id, authPin, setIsAuth])
+
+  useEffect(() => {
+    if (bucketlist) {
+      setDisplayContent(true);
+      setCurrentList({ name: bucketlist.name, created_by: bucketlist.created_by });
+      setMarkers(mapLocationData(bucketlist.bucketlist_locations));
+      setViewport({
+        latitude: 11.1784,
+        longitude: 90.8129,
+        zoom: 1,
+        transitionDuration: 2000,
+        transitionInterpolator: new FlyToInterpolator(),
+        transitionEasing: easeCubic
+      });
+    } else {
+      fetch(`${process.env.REACT_APP_WANDERLIST_API}/bucketlists/${params.id}`)
+        .then(res => res.json())
+        .then(json => {
+          setBucketlist(json);
+          setDisplayContent(true);
+        })
+        .catch(err => console.log(err));
+    }
+  }, [params.id, setBucketlist, setDisplayContent, bucketlist, setCurrentList, setMarkers, setViewport])
+
+  const authDisplay = (display) => {
+    if (isAuth) {
+      return display;
+    }
+  }
+
+  if (bucketlist) {
+
+    const lastUpdated = timeAgo(bucketlist.updated_at)
+
+    return (
+      <>
+        <BucketlistHeader>
+          <h2>{bucketlist.name}</h2>
+          { 
+            authDisplay(<TextField fullWidth label="Manage this listing at" disabled size="small" value={`${process.env.REACT_APP_WANDERLIST_URL}/bucketlists/${bucketlist.id}?pin=${authPin}`}/>)
+          }
+          <p>{bucketlist.description}</p>
+          <LastUpdated>Last updated {lastUpdated} by <b>{bucketlist.created_by}</b></LastUpdated>
+        </BucketlistHeader>
+          {
+            authDisplay(<DestinationSearch appState={appState} />)
+          }
+        <BucketlistLocationsList appState={appState} locations={bucketlist.bucketlist_locations} />
+      </>
+    )
+  }
+  return <LoaderOverlay loaderStatus />
+}
+
+export default Bucketlist
