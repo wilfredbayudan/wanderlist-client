@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 const SearchBar = styled.form`
   display: flex;
+  padding: 10px;
   gap: 10px;
 `
 

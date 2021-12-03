@@ -9,6 +9,7 @@ import Step3 from './Step3';
 function NewBucketlistPage({ appState: { setDisplayContent, bucketlists, setBucketlists, setBucketlist }}) {
   const [open, setOpen] = useState(true);
   const [step, setStep] = useState(1);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -44,6 +45,7 @@ function NewBucketlistPage({ appState: { setDisplayContent, bucketlists, setBuck
 
   const handleSubmit = () => {
     console.log('Submitting form...');
+    setLoading(true);
     // Submit Form
     fetch(`${process.env.REACT_APP_WANDERLIST_API}/bucketlists`, {
       method: 'POST',
@@ -54,6 +56,7 @@ function NewBucketlistPage({ appState: { setDisplayContent, bucketlists, setBuck
     })
       .then(res => res.json())
       .then(json => {
+        setLoading(false);
         console.log(json);
         setBucketlists([
           ...bucketlists,
@@ -70,7 +73,8 @@ function NewBucketlistPage({ appState: { setDisplayContent, bucketlists, setBuck
     formData, setFormData,
     nextStep, prevStep,
     handleChange, handleClose,
-    handleSubmit
+    handleSubmit, 
+    loading, setLoading
   }
 
   const renderStep = () => {

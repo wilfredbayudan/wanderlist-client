@@ -1,11 +1,12 @@
 import React from 'react';
 import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 import TextField from '@mui/material/TextField';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 
-const Step3 = ({ formProps: { handleClose, nextStep, prevStep, handleChange, formData, handleSubmit }}) => {
+const Step3 = ({ formProps: { handleClose, nextStep, prevStep, handleChange, formData, handleSubmit, loading, setLoading }}) => {
   return (
     <>
       <DialogContent>
@@ -28,7 +29,7 @@ const Step3 = ({ formProps: { handleClose, nextStep, prevStep, handleChange, for
       </DialogContent>
       <DialogActions>
         <Button onClick={prevStep}>Back</Button>
-        <Button type="submit" onClick={handleSubmit}>Submit</Button>
+        <LoadingButton loading={loading} disabled={loading} type="submit" onClick={handleSubmit}>Submit</LoadingButton>
       </DialogActions>
     </>
   )

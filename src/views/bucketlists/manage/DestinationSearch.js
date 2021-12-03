@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import SearchForm from './SearchForm';
+import SearchResults from './SearchResults';
 
 const SearchCard = styled.div`
   width: 100%;
-  padding: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 `;
 
@@ -37,6 +37,7 @@ const DestinationSearch = ({ appState }) => {
   return (
     <SearchCard>
       <SearchForm handleSearch={handleSearch} />
+      <SearchResults results={results} appState={appState} />
     </SearchCard>
   )
 }

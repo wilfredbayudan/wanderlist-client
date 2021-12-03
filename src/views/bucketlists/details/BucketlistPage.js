@@ -21,6 +21,14 @@ const LastUpdated = styled.span`
   color: #696969;
 `;
 
+const Description = styled.p`
+  width: 100%;
+  padding: 10px 6px;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  font-size: 0.9em;
+`
+
 function Bucketlist( { appState }) {
 
   const { setViewport, setMarkers, setDisplayContent, setCurrentList, bucketlist, setBucketlist } = appState;
@@ -29,7 +37,7 @@ function Bucketlist( { appState }) {
 
   const params = useParams();
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const authPin = searchParams.get('pin');
 
@@ -92,7 +100,7 @@ function Bucketlist( { appState }) {
           { 
             authDisplay(<TextField fullWidth label="Manage this listing at" disabled size="small" value={`${process.env.REACT_APP_WANDERLIST_URL}/bucketlists/${bucketlist.id}?pin=${authPin}`}/>)
           }
-          <p>{bucketlist.description}</p>
+          <Description>{bucketlist.description}</Description>
           <LastUpdated>Last updated {lastUpdated} by <b>{bucketlist.created_by}</b></LastUpdated>
         </BucketlistHeader>
           {
