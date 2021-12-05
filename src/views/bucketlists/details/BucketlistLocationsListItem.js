@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { FlyToInterpolator } from 'react-map-gl';
 import { easeCubic } from 'd3-ease';
+import { WrongLocationOutlined } from '@mui/icons-material';
 
 // const Li = styled.li`
 //   padding: 10px;
@@ -29,7 +30,24 @@ const Notes = styled.p`
   margin: 0;
 `;
 
-function BucketlistLocationsListItem({ location, markerNum, setViewport, viewport }) {
+const StyledTypography = styled(Typography)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const DeleteLocationIcon = styled(WrongLocationOutlined)`
+color: #a92e12;
+  &:hover {
+    color: #c7532b;
+  }
+`;
+
+function BucketlistLocationsListItem({ location, markerNum, appState, auth }) {
+
+  const { viewport, setViewport, bucketlist, setBucketlist, setLoaderStatus } = appState;
+
+  console.log(bucketlist);
 
   function flyToLocation() {
     setViewport({
@@ -43,6 +61,27 @@ function BucketlistLocationsListItem({ location, markerNum, setViewport, viewpor
     });
   }
 
+  const handleDelete = (e) => {
+    e.stopPropagation();
+    console.log('Deleting...');
+    setLoaderStatus(true);
+    fetch(`${process.env.REACT_APP_WANDERLIST_API}/bucketlists/${bucketlist.id}/locations/${location.id}`, {
+      method: 'DELETE',
+      headers: {
+        'PIN': auth,
+      }
+    })
+      .then(res => res.json())
+      .then(json => {
+        setLoaderStatus(false);  
+        setBucketlist({
+          ...bucketlist,
+          bucketlist_locations: bucketlist.bucketlist_locations.filter(location => location.id !== json.id)
+        })        
+      })
+      .catch(err => console.log(err))
+  } 
+
   return (
     <StyledAccordion onClick={flyToLocation}>
       <AccordionSummary
@@ -50,7 +89,9 @@ function BucketlistLocationsListItem({ location, markerNum, setViewport, viewpor
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <Typography>{markerNum}. {location.location.label}</Typography>
+        <StyledTypography><span>{markerNum}. {location.location.label}</span> 
+        { auth ? <DeleteLocationIcon onClick={handleDelete} /> : '' }
+        </StyledTypography>
       </AccordionSummary>
       <AccordionDetails>
         <Notes>{location.notes ? location.notes : 'No notes'}</Notes>

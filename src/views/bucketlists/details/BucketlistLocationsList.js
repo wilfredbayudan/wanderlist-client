@@ -1,10 +1,10 @@
 import React from 'react';
 import BucketlistLocationsListItem from './BucketlistLocationsListItem';
 
-function BucketlistLocationsList({ appState: { setViewport, viewport }, locations }) {
+function BucketlistLocationsList({ appState, locations, auth }) {
   
   const renderLocations = locations.map((location, index) => {
-    return <BucketlistLocationsListItem key={index} viewport={viewport} setViewport={setViewport} markerNum={index+1} location={location} />
+    return <BucketlistLocationsListItem key={index} auth={auth} appState={appState} markerNum={index+1} location={location} />
   })
 
   return (

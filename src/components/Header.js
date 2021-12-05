@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import WanderlistLogo from '../assets/images/logo.png';
+import MobileNav from './MobileNav';
 
 const StyledHeader = styled.header`
   z-index: 2;
@@ -26,6 +27,9 @@ const Logo = styled.img`
 const NavBar = styled.div`
   font-size: 1.25em;
   text-transform: uppercase;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -52,6 +56,7 @@ const Header = () => {
         <StyledNavLink to="/destinations">Destinations</StyledNavLink> |
         <StyledNavLink to="/bucketlists/new">Create A List</StyledNavLink>
       </NavBar>
+      <MobileNav />
     </StyledHeader>
   );
 }

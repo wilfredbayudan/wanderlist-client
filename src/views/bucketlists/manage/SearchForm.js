@@ -23,8 +23,6 @@ const SearchForm = ({ handleSearch }) => {
     setSearchInput('');
   }
 
-  console.log(searchInput)
-
   return (
     <SearchBar onSubmit={handleSubmit}>
       <TextField

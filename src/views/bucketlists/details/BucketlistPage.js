@@ -43,7 +43,6 @@ function Bucketlist( { appState }) {
 
   useEffect(() => {
     if (bucketlist && "pin" in bucketlist) {
-      console.log('YUP');
       setIsAuth(true);
     } else if (params.id && authPin) {
       fetch(`${process.env.REACT_APP_WANDERLIST_API}/bucketlists/${params.id}/auth`, {
@@ -89,6 +88,8 @@ function Bucketlist( { appState }) {
     }
   }
 
+  const auth = isAuth ? authPin : false;
+
   if (bucketlist) {
 
     const lastUpdated = timeAgo(bucketlist.updated_at)
@@ -101,12 +102,12 @@ function Bucketlist( { appState }) {
             authDisplay(<TextField fullWidth label="Manage this listing at" disabled size="small" value={`${process.env.REACT_APP_WANDERLIST_URL}/bucketlists/${bucketlist.id}?pin=${authPin}`}/>)
           }
           <Description>{bucketlist.description}</Description>
-          <LastUpdated>Last updated {lastUpdated} by <b>{bucketlist.created_by}</b></LastUpdated>
+          <LastUpdated>Added {lastUpdated} by <b>{bucketlist.created_by}</b></LastUpdated>
         </BucketlistHeader>
           {
-            authDisplay(<DestinationSearch appState={appState} />)
+            authDisplay(<DestinationSearch appState={appState} authPin={authPin} />)
           }
-        <BucketlistLocationsList appState={appState} locations={bucketlist.bucketlist_locations} />
+        <BucketlistLocationsList auth={auth} appState={appState} locations={bucketlist.bucketlist_locations} />
       </>
     )
   }
