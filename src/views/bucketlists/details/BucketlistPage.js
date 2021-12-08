@@ -62,7 +62,7 @@ function Bucketlist( { appState }) {
     if (bucketlist) {
       setDisplayContent(true);
       setCurrentList({ name: bucketlist.name, created_by: bucketlist.created_by });
-      setMarkers(mapLocationData(bucketlist.bucketlist_locations));
+      setMarkers(mapLocationData(bucketlist.bucketlist_destinations));
       setViewport({
         latitude: 11.1784,
         longitude: 90.8129,
@@ -107,7 +107,7 @@ function Bucketlist( { appState }) {
           {
             authDisplay(<DestinationSearch appState={appState} authPin={authPin} />)
           }
-        <BucketlistLocationsList auth={auth} appState={appState} locations={bucketlist.bucketlist_locations} />
+        <BucketlistLocationsList auth={auth} appState={appState} locations={bucketlist.bucketlist_destinations} />
       </>
     )
   }

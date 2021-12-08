@@ -26,6 +26,7 @@ const SearchForm = ({ handleSearch }) => {
   return (
     <SearchBar onSubmit={handleSubmit}>
       <TextField
+        autoFocus
         value={searchInput}
         onChange={handleChange}
         fullWidth

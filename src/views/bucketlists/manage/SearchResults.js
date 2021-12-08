@@ -12,12 +12,12 @@ const SearchResults = ({ appState, results, authPin }) => {
 
   const { bucketlist } = appState;
 
-  const existingDestinations = bucketlist.bucketlist_locations;
+  const existingDestinations = bucketlist.bucketlist_destinations;
 
   const existingKeys = {};
 
   existingDestinations.forEach(destination => {
-    existingKeys[destination.location.label] = true;
+    existingKeys[destination.destination.label] = true;
   })
 
   const renderResults = results.map((result, index) => {

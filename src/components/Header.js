@@ -27,7 +27,7 @@ const Logo = styled.img`
 const NavBar = styled.div`
   font-size: 1.25em;
   text-transform: uppercase;
-  @media (max-width: 768px) {
+  @media (max-width: 820px) {
     display: none;
   }
 `;

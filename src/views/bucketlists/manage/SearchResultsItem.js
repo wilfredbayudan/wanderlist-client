@@ -54,7 +54,7 @@ const SearchResultsItem = ({ appState, location, authPin }) => {
       label: location.label
     }
     setLoaderStatus(true);
-    fetch(`${process.env.REACT_APP_WANDERLIST_API}/bucketlists/${bucketlist.id}/locations`, {
+    fetch(`${process.env.REACT_APP_WANDERLIST_API}/bucketlists/${bucketlist.id}/destinations`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -67,8 +67,8 @@ const SearchResultsItem = ({ appState, location, authPin }) => {
         setLoaderStatus(false);
         setBucketlist({
           ...bucketlist,
-          bucketlist_locations: [
-            ...bucketlist.bucketlist_locations,
+          bucketlist_destinations: [
+            ...bucketlist.bucketlist_destinations,
             json
           ]
         });

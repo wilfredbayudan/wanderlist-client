@@ -39,7 +39,7 @@ const BucketlistsListItem = ( { appState: { setLoaderStatus, setMarkers, setBuck
 
   const navigate = useNavigate();
 
-  const coordinates = mapLocationData(bucketlist.bucketlist_locations);
+  const coordinates = mapLocationData(bucketlist.bucketlist_destinations);
 
   function assignMarkers() {
     setMarkers(coordinates);

@@ -1,8 +1,8 @@
 function mapLocationData(array) {
   return array.map(data => {
     return {
-      lat: data.location.lat,
-      lng: data.location.lng
+      lat: data.destination.lat,
+      lng: data.destination.lng
     }
   })
 }

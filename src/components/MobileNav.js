@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
 import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import { MenuOutlined } from '@mui/icons-material';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import { ListAltOutlined } from '@mui/icons-material';
+import { LocationOnOutlined } from '@mui/icons-material';
+import { EditLocationAltOutlined } from '@mui/icons-material';
 
 const MenuIcon = styled(MenuOutlined)`
   cursor: pointer;
@@ -18,7 +18,7 @@ const MenuIcon = styled(MenuOutlined)`
 
 const ResponsiveNav = styled.div`
   display: block;
-  @media (min-width: 768px) {
+  @media (min-width: 820px ) {
     display: none;
   }
 `;
@@ -26,6 +26,8 @@ const ResponsiveNav = styled.div`
 const MobileNav = () => {
 
   const [isOpen, setIsOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   const toggleDrawer = (open) => (event) => {
     setIsOpen(open);
@@ -46,25 +48,24 @@ const MobileNav = () => {
           onClick={toggleDrawer(false)}
         >
           <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
+            <ListItem button onClick={() => navigate(`/bucketlists`)}>
+              <ListItemIcon>
+                <ListAltOutlined />
+              </ListItemIcon>
+              <ListItemText primary="Bucketlists" />
+            </ListItem>
+            <ListItem button onClick={() => navigate(`/destinations`)}>
+              <ListItemIcon>
+                <LocationOnOutlined />
+              </ListItemIcon>
+              <ListItemText primary="Destinations" />
+            </ListItem>
+            <ListItem button onClick={() => navigate(`/bucketlists/new`)}>
+              <ListItemIcon>
+                <EditLocationAltOutlined />
+              </ListItemIcon>
+              <ListItemText primary="Create a List" />
+            </ListItem>
           </List>
         </Box>
         </List>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -8,6 +8,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { FlyToInterpolator } from 'react-map-gl';
 import { easeCubic } from 'd3-ease';
 import { WrongLocationOutlined } from '@mui/icons-material';
+import LocationNotes from './LocationNotes';
+import DeleteDialog from '../manage/DeleteDialog';
 
 // const Li = styled.li`
 //   padding: 10px;
@@ -22,12 +24,6 @@ const StyledAccordion = styled(Accordion)`
   &:hover {
     background-color: #d7f2ff;
   }
-`;
-
-const Notes = styled.p`
-  font-size: 0.8em;
-  padding: 0;
-  margin: 0;
 `;
 
 const StyledTypography = styled(Typography)`
@@ -47,13 +43,13 @@ function BucketlistLocationsListItem({ location, markerNum, appState, auth }) {
 
   const { viewport, setViewport, bucketlist, setBucketlist, setLoaderStatus } = appState;
 
-  console.log(bucketlist);
+  const [deleteDialog, setDeleteDialog] = useState(false);
 
   function flyToLocation() {
     setViewport({
       ...viewport,
-      longitude: location.location.lng,
-      latitude: location.location.lat,
+      longitude: location.destination.lng,
+      latitude: location.destination.lat,
       zoom: 6,
       transitionDuration: 2000,
       transitionInterpolator: new FlyToInterpolator(),
@@ -61,11 +57,10 @@ function BucketlistLocationsListItem({ location, markerNum, appState, auth }) {
     });
   }
 
-  const handleDelete = (e) => {
-    e.stopPropagation();
+  const handleDelete = () => {
     console.log('Deleting...');
     setLoaderStatus(true);
-    fetch(`${process.env.REACT_APP_WANDERLIST_API}/bucketlists/${bucketlist.id}/locations/${location.id}`, {
+    fetch(`${process.env.REACT_APP_WANDERLIST_API}/bucketlists/${bucketlist.id}/destinations/${location.id}`, {
       method: 'DELETE',
       headers: {
         'PIN': auth,
@@ -76,26 +71,36 @@ function BucketlistLocationsListItem({ location, markerNum, appState, auth }) {
         setLoaderStatus(false);  
         setBucketlist({
           ...bucketlist,
-          bucketlist_locations: bucketlist.bucketlist_locations.filter(location => location.id !== json.id)
+          bucketlist_destinations: bucketlist.bucketlist_destinations.filter(location => location.id !== json.id)
         })        
       })
       .catch(err => console.log(err))
   } 
 
+  const handleDeleteConfirm = (e) => {
+    e.stopPropagation();
+    setDeleteDialog(true);
+  }
+
   return (
-    <StyledAccordion onClick={flyToLocation}>
+    <StyledAccordion onChange={(e, expanded) => { 
+      if (expanded) {
+        flyToLocation();
+      }
+     }}>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <StyledTypography><span>{markerNum}. {location.location.label}</span> 
-        { auth ? <DeleteLocationIcon onClick={handleDelete} /> : '' }
+        <StyledTypography><span>{markerNum}. {location.destination.label}</span> 
+        { auth ? <DeleteLocationIcon onClick={handleDeleteConfirm} /> : '' }
         </StyledTypography>
       </AccordionSummary>
       <AccordionDetails>
-        <Notes>{location.notes ? location.notes : 'No notes'}</Notes>
+        <LocationNotes location={location} bucketlist={bucketlist} setBucketlist={setBucketlist} />
       </AccordionDetails>
+      <DeleteDialog label={location.destination.label} deleteDialog={deleteDialog} setDeleteDialog={setDeleteDialog} handleDelete={handleDelete} />
     </StyledAccordion>
   )
 }
