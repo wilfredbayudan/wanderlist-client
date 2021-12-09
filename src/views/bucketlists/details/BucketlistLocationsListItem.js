@@ -41,7 +41,7 @@ color: #a92e12;
 
 function BucketlistLocationsListItem({ location, markerNum, appState, auth }) {
 
-  const { viewport, setViewport, bucketlist, setBucketlist, setLoaderStatus } = appState;
+  const { viewport, setViewport, bucketlist, setBucketlist, setLoaderStatus, bucketlists, setBucketlists } = appState;
 
   const [deleteDialog, setDeleteDialog] = useState(false);
 
@@ -72,7 +72,16 @@ function BucketlistLocationsListItem({ location, markerNum, appState, auth }) {
         setBucketlist({
           ...bucketlist,
           bucketlist_destinations: bucketlist.bucketlist_destinations.filter(location => location.id !== json.id)
-        })        
+        })  
+        setBucketlists(bucketlists.map(mappedList => {
+          if (mappedList.id === bucketlist.id) {
+            return {
+              ...mappedList,
+              bucketlist_destinations: mappedList.bucketlist_destinations.filter(destination => destination.id !== json.id)
+            }
+          }
+          return mappedList;
+        }))      
       })
       .catch(err => console.log(err))
   } 

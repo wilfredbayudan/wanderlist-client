@@ -32,7 +32,7 @@ const AddLocation = styled(AddLocationAltOutlined)`
 
 const SearchResultsItem = ({ appState, location, authPin }) => {
 
-  const { setBucketlist, bucketlist, setViewport, viewport, setLoaderStatus } = appState;
+  const { setBucketlist, bucketlist, setViewport, viewport, bucketlists, setBucketlists, destinations, setDestinations } = appState;
 
   const handleLabelClick = () => {
     setViewport({
@@ -53,7 +53,6 @@ const SearchResultsItem = ({ appState, location, authPin }) => {
       lat: location.lat,
       label: location.label
     }
-    setLoaderStatus(true);
     fetch(`${process.env.REACT_APP_WANDERLIST_API}/bucketlists/${bucketlist.id}/destinations`, {
       method: 'POST',
       headers: {
@@ -64,7 +63,6 @@ const SearchResultsItem = ({ appState, location, authPin }) => {
     })
       .then(res => res.json())
       .then(json => {
-        setLoaderStatus(false);
         setBucketlist({
           ...bucketlist,
           bucketlist_destinations: [
@@ -72,7 +70,25 @@ const SearchResultsItem = ({ appState, location, authPin }) => {
             json
           ]
         });
-        console.log(json);
+        setBucketlists(bucketlists.map(mappedList => {
+          if (mappedList.id === bucketlist.id) {
+            return {
+              ...mappedList,
+              bucketlist_destinations: [
+                ...mappedList.bucketlist_destinations,
+                json
+              ]
+            }
+          }
+          console.log(json)
+          return mappedList;
+        }))
+        if (!destinations.find(searchDestination => searchDestination.id === json.destination.id)) {
+          setDestinations([
+            ...destinations,
+            json.destination
+          ])
+        }
       })
       .catch(err => console.log(err))
   }

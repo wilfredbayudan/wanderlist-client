@@ -12,7 +12,7 @@ const BucketlistsList = ({ appState, bucketlists}) => {
 
   return (
     <List>
-      {bucketlists.map(bucketlist => <BucketlistsListItem key={bucketlist.id} appState={appState} bucketlist={bucketlist} />)}
+      {bucketlists.map(bucketlist => <BucketlistsListItem key={bucketlist.id} appState={appState} selectedBucketlist={bucketlist} />)}
     </List>
   )
 }

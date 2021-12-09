@@ -4,11 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import mapLocationData from '../../utils/mapLocationData';
 import { FlyToInterpolator } from 'react-map-gl';
 import { easeCubic } from 'd3-ease';
+import { EditOutlined } from '@mui/icons-material';
 
 const Bucketlist = styled.li`
   padding: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
   cursor: pointer;
+  background-color: ${props => props.isAuthor ? '#f1ffb6' : '#ffffff'};
   &:hover {
     background-color: #d7f2ff;
   }
@@ -18,6 +20,8 @@ const Name = styled.h3`
   margin: 0;
   padding: 0;
   font-weight: bold;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Description = styled.p`
@@ -35,15 +39,15 @@ const CreatedBy = styled.span`
   color: #696969;
 `;
 
-const BucketlistsListItem = ( { appState: { setLoaderStatus, setMarkers, setBucketlist, setCurrentList, viewport, setViewport }, bucketlist }) => {
+const BucketlistsListItem = ( { appState: { bucketlist, setLoaderStatus, setMarkers, setBucketlist, setCurrentList, viewport, setViewport }, selectedBucketlist }) => {
 
   const navigate = useNavigate();
 
-  const coordinates = mapLocationData(bucketlist.bucketlist_destinations);
+  const coordinates = mapLocationData(selectedBucketlist.bucketlist_destinations);
 
   function assignMarkers() {
     setMarkers(coordinates);
-    setCurrentList({ name: bucketlist.name, created_by: bucketlist.created_by })
+    setCurrentList({ name: selectedBucketlist.name, created_by: selectedBucketlist.created_by })
     setViewport({
       ...viewport,
       latitude: 11.1784,
@@ -56,22 +60,26 @@ const BucketlistsListItem = ( { appState: { setLoaderStatus, setMarkers, setBuck
   }
 
   function handleClick() {
+    if (bucketlist.id === selectedBucketlist.id) {
+      navigate(`/bucketlists/${selectedBucketlist.id}${selectedBucketlist.pin ? `?pin=${selectedBucketlist.pin}` : ''}`);
+      return;
+    }
     setLoaderStatus(true);
-    fetch(`${process.env.REACT_APP_WANDERLIST_API}/bucketlists/${bucketlist.id}`)
+    fetch(`${process.env.REACT_APP_WANDERLIST_API}/bucketlists/${selectedBucketlist.id}`)
     .then(res => res.json())
     .then(json => {
       setLoaderStatus(false);
       setBucketlist(json);
-      navigate(`/bucketlists/${bucketlist.id}${bucketlist.pin ? `?pin=${bucketlist.pin}` : ''}`);
+      navigate(`/bucketlists/${selectedBucketlist.id}${selectedBucketlist.pin ? `?pin=${selectedBucketlist.pin}` : ''}`);
     })
     .catch(err => console.log(err));
   }
 
   return (
-    <Bucketlist onMouseEnter={assignMarkers} onClick={handleClick}>
-      <Name>{bucketlist.name}</Name>
-      <Description>{bucketlist.description}</Description>
-      <CreatedBy>By {bucketlist.created_by}</CreatedBy>
+    <Bucketlist onMouseEnter={assignMarkers} onClick={handleClick} isAuthor={selectedBucketlist.pin}>
+      <Name>{selectedBucketlist.name}{selectedBucketlist.pin ? <EditOutlined /> : null}</Name>
+      <Description>{selectedBucketlist.description}</Description>
+      <CreatedBy>By {selectedBucketlist.created_by}</CreatedBy>
     </Bucketlist>
   )
 };

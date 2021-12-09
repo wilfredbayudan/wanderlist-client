@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -9,6 +9,7 @@ import BucketlistsPage from './views/bucketlists/BucketlistsPage';
 import BucketlistPage from './views/bucketlists/details/BucketlistPage';
 import './App.css';
 import NewBucketlistPage from './views/bucketlists/new/NewBucketlistPage';
+import DestinationsPage from './views/destinations/DestinationsPage';
 
 const App = () => {
 
@@ -25,6 +26,7 @@ const App = () => {
   const [bucketlists, setBucketlists] = useState(null);
   const [bucketlist, setBucketlist] = useState(null)
   const [currentList, setCurrentList] = useState(null);
+  const [destinations, setDestinations] = useState(null);
 
   const appState = {
     viewport, setViewport,
@@ -34,8 +36,28 @@ const App = () => {
     currentLocation, setCurrentLocation,
     bucketlists, setBucketlists,
     bucketlist, setBucketlist,
-    currentList, setCurrentList
+    currentList, setCurrentList,
+    destinations, setDestinations
   }
+
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_WANDERLIST_API}/bucketlists`)
+      .then(res => res.json())
+      .then(json => {
+        // console.log(json);
+        setBucketlists(json);
+      })
+      .catch(err => console.log(err))      
+  }, [setBucketlists, setDisplayContent]);
+
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_WANDERLIST_API}/destinations`)
+      .then(res => res.json())
+      .then(json => {
+        setDestinations(json);
+      })
+      .catch(err => console.log(err))
+  }, [setDestinations, setLoaderStatus, setDisplayContent])
 
   return (
     <BrowserRouter>
@@ -46,7 +68,7 @@ const App = () => {
           <Route exact path="/bucketlists" element={<BucketlistsPage appState={appState} />} />
           <Route exact path="/bucketlists/new" element={<NewBucketlistPage appState={appState} />} />
           <Route path="/bucketlists/:id" element={<BucketlistPage appState={appState} />} />
-          <Route path="/destinations" element={<>Destinations Path</>}></Route> 
+          <Route path="/destinations" element={<DestinationsPage appState={appState} />}></Route> 
         </Routes>
       </MainContent>
       <Footer appState={appState} />

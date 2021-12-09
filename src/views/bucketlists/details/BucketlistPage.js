@@ -31,7 +31,7 @@ const Description = styled.p`
 
 function Bucketlist( { appState }) {
 
-  const { setViewport, setMarkers, setDisplayContent, setCurrentList, bucketlist, setBucketlist } = appState;
+  const { setViewport, setMarkers, setDisplayContent, setCurrentList, bucketlist, setBucketlist, bucketlists, setBucketlists } = appState;
 
   const [isAuth, setIsAuth] = useState(false);
 
@@ -42,9 +42,12 @@ function Bucketlist( { appState }) {
   const authPin = searchParams.get('pin');
 
   useEffect(() => {
-    if (bucketlist && "pin" in bucketlist) {
+    if (bucketlists && authPin === bucketlists.find(list => list.id === parseInt(params.id)).pin) {
       setIsAuth(true);
-    } else if (params.id && authPin) {
+    } else if (bucketlist && "pin" in bucketlist) {
+      setIsAuth(true);
+    } else if (params.id && authPin && !isAuth && bucketlists) {
+      console.log('Fetching...')
       fetch(`${process.env.REACT_APP_WANDERLIST_API}/bucketlists/${params.id}/auth`, {
         headers: {
           'PIN': authPin
@@ -53,10 +56,22 @@ function Bucketlist( { appState }) {
         .then(res => res.json())
         .then(json => {
           setIsAuth(json.permission);
+          if (json.permission) {
+            setBucketlists(bucketlists.map(mappedList => {
+              if (mappedList.id === parseInt(params.id)) {
+                return {
+                  ...mappedList,
+                  pin: authPin
+                }
+              }
+              return mappedList;
+            }))
+          }
         })
         .catch(err => console.log(err))
     }
-  }, [bucketlist, params.id, authPin, setIsAuth])
+    return
+  }, [bucketlist, params.id, authPin, setIsAuth, bucketlists, setBucketlists, isAuth])
 
   useEffect(() => {
     if (bucketlist) {
@@ -72,6 +87,7 @@ function Bucketlist( { appState }) {
         transitionEasing: easeCubic
       });
     } else {
+      console.log('fetching bucketlist....')
       fetch(`${process.env.REACT_APP_WANDERLIST_API}/bucketlists/${params.id}`)
         .then(res => res.json())
         .then(json => {

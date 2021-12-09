@@ -7,21 +7,10 @@ const Bucketlists = ({ appState }) => {
   const { setDisplayContent, bucketlists, setBucketlists } = appState;
 
   useEffect(() => {
-
     if (bucketlists) {
       setDisplayContent(true);
-    } else {
-    fetch(`${process.env.REACT_APP_WANDERLIST_API}/bucketlists`)
-      .then(res => res.json())
-      .then(json => {
-        // console.log(json);
-        setBucketlists(json);
-        setDisplayContent(true);
-      })
-      .catch(err => console.log(err))      
     }
-
-  }, [bucketlists, setBucketlists, setDisplayContent]);
+  }, [bucketlists, setDisplayContent])
 
   if (bucketlists) {
     return (
