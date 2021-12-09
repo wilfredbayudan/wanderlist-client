@@ -60,7 +60,7 @@ const BucketlistsListItem = ( { appState: { bucketlist, setLoaderStatus, setMark
   }
 
   function handleClick() {
-    if (bucketlist.id === selectedBucketlist.id) {
+    if (bucketlist && bucketlist.id === selectedBucketlist.id) {
       navigate(`/bucketlists/${selectedBucketlist.id}${selectedBucketlist.pin ? `?pin=${selectedBucketlist.pin}` : ''}`);
       return;
     }

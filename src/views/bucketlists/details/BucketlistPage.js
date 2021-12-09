@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
 import LoaderOverlay from '../../../components/LoaderOverlay';
 import styled from 'styled-components';
 import timeAgo from '../../../utils/timeAgo';
@@ -31,7 +31,7 @@ const Description = styled.p`
 
 function Bucketlist( { appState }) {
 
-  const { setViewport, setMarkers, setDisplayContent, setCurrentList, bucketlist, setBucketlist, bucketlists, setBucketlists } = appState;
+  const { setDialog, setViewport, setMarkers, setDisplayContent, setCurrentList, bucketlist, setBucketlist, bucketlists, setBucketlists } = appState;
 
   const [isAuth, setIsAuth] = useState(false);
 
@@ -41,10 +41,10 @@ function Bucketlist( { appState }) {
 
   const authPin = searchParams.get('pin');
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    if (bucketlists && authPin === bucketlists.find(list => list.id === parseInt(params.id)).pin) {
-      setIsAuth(true);
-    } else if (bucketlist && "pin" in bucketlist) {
+    if (bucketlist && "pin" in bucketlist) {
       setIsAuth(true);
     } else if (params.id && authPin && !isAuth && bucketlists) {
       console.log('Fetching...')
@@ -87,16 +87,22 @@ function Bucketlist( { appState }) {
         transitionEasing: easeCubic
       });
     } else {
-      console.log('fetching bucketlist....')
       fetch(`${process.env.REACT_APP_WANDERLIST_API}/bucketlists/${params.id}`)
-        .then(res => res.json())
+        .then(res => {
+          if (res.status < 500) {
+            return res.json();
+          } else {
+            setDialog('That bucketlist could not be found.');
+            navigate('/bucketlists');
+          }
+        })
         .then(json => {
           setBucketlist(json);
           setDisplayContent(true);
         })
         .catch(err => console.log(err));
     }
-  }, [params.id, setBucketlist, setDisplayContent, bucketlist, setCurrentList, setMarkers, setViewport])
+  }, [params.id, setBucketlist, setDisplayContent, bucketlist, setCurrentList, setMarkers, setViewport, navigate, setDialog])
 
   const authDisplay = (display) => {
     if (isAuth) {

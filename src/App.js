@@ -10,6 +10,7 @@ import BucketlistPage from './views/bucketlists/details/BucketlistPage';
 import './App.css';
 import NewBucketlistPage from './views/bucketlists/new/NewBucketlistPage';
 import DestinationsPage from './views/destinations/DestinationsPage';
+import DialogOverlay from './components/DialogOverlay';
 
 const App = () => {
 
@@ -27,6 +28,7 @@ const App = () => {
   const [bucketlist, setBucketlist] = useState(null)
   const [currentList, setCurrentList] = useState(null);
   const [destinations, setDestinations] = useState(null);
+  const [dialog, setDialog] = useState(false);
 
   const appState = {
     viewport, setViewport,
@@ -37,7 +39,8 @@ const App = () => {
     bucketlists, setBucketlists,
     bucketlist, setBucketlist,
     currentList, setCurrentList,
-    destinations, setDestinations
+    destinations, setDestinations,
+    dialog, setDialog
   }
 
   useEffect(() => {
@@ -62,6 +65,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <LoaderOverlay loaderStatus={loaderStatus} />
+      <DialogOverlay appState={appState} />
       <Header />
       <MainContent displayContent={displayContent} setDisplayContent={setDisplayContent}>
         <Routes>
