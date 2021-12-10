@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Edit } from '@mui/icons-material';
+import { render } from '@testing-library/react';
+import { TextField } from '@mui/material';
 
 const DescriptionDiv = styled.div`
   width: 100%;
@@ -25,17 +27,32 @@ const Clear = styled.div`
   clear: both;
 `;
 
+const EditTextField = styled(TextField)`
+  background: #ffffff;
+`;
+
 const Description = ({ appState, description, auth }) => {
 
   const [editMode, setEditMode] = useState(false); 
-  
+  const [editInput, setEditInput] = useState(description);
+
   const toggleEdit = () => {
     setEditMode(!editMode);
   }
 
+  const handleChange = e => {
+    setEditInput(e.target.value)
+  }
+
+  const renderEditMode = () => {
+    return (
+      <EditTextField value={editInput} autoFocus size="small" onChange={handleChange} multiline rows={4} fullWidth />
+    )
+  }
+
   return (
     <DescriptionDiv>
-      {editMode ? 'EDIT MODE' : description}
+      {editMode ? renderEditMode() : description}
       {auth && !editMode? <EditIcon onClick={toggleEdit} /> : null}
       <Clear />
     </DescriptionDiv>

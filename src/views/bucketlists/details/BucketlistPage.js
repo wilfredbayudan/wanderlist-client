@@ -66,12 +66,16 @@ function Bucketlist( { appState }) {
               }
               return mappedList;
             }))
+            setBucketlist({
+              ...bucketlist,
+              pin: authPin
+            })
           }
         })
         .catch(err => console.log(err))
     }
     return
-  }, [bucketlist, params.id, authPin, setIsAuth, bucketlists, setBucketlists, isAuth])
+  }, [bucketlist, params.id, authPin, setIsAuth, bucketlists, setBucketlists, isAuth, setBucketlist])
 
   useEffect(() => {
     if (bucketlist && bucketlist.id === parseInt(params.id)) {
