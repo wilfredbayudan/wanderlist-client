@@ -10,7 +10,7 @@ const Bucketlist = styled.li`
   padding: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
   cursor: pointer;
-  background-color: ${props => props.isAuthor ? '#f1ffb6' : '#ffffff'};
+  background-color: ${props => props.isAuthor ? '#ffffff' : '#ffffff'};
   &:hover {
     background-color: #d7f2ff;
   }
@@ -37,6 +37,13 @@ const CreatedBy = styled.span`
   text-align: right; 
   font-size: 0.8em;
   color: #696969;
+`;
+
+const EditIcon = styled(EditOutlined)`
+  color: #80bbda;
+  &:hover {
+    color: #17b1ff;
+  }
 `;
 
 const BucketlistsListItem = ( { appState: { bucketlist, setLoaderStatus, setMarkers, setBucketlist, setCurrentList, viewport, setViewport }, selectedBucketlist }) => {
@@ -77,7 +84,7 @@ const BucketlistsListItem = ( { appState: { bucketlist, setLoaderStatus, setMark
 
   return (
     <Bucketlist onMouseEnter={assignMarkers} onClick={handleClick} isAuthor={selectedBucketlist.pin}>
-      <Name>{selectedBucketlist.name}{selectedBucketlist.pin ? <EditOutlined /> : null}</Name>
+      <Name>{selectedBucketlist.name}{selectedBucketlist.pin ? <EditIcon /> : null}</Name>
       <Description>{selectedBucketlist.description}</Description>
       <CreatedBy>By {selectedBucketlist.created_by}</CreatedBy>
     </Bucketlist>

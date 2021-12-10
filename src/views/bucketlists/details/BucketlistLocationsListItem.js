@@ -107,7 +107,7 @@ function BucketlistLocationsListItem({ location, markerNum, appState, auth }) {
         </StyledTypography>
       </AccordionSummary>
       <AccordionDetails>
-        <LocationNotes location={location} bucketlist={bucketlist} setBucketlist={setBucketlist} />
+        <LocationNotes location={location} appState={appState} auth={auth} />
       </AccordionDetails>
       <DeleteDialog label={location.destination.label} deleteDialog={deleteDialog} setDeleteDialog={setDeleteDialog} handleDelete={handleDelete} />
     </StyledAccordion>

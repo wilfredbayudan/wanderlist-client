@@ -19,7 +19,7 @@ const EditIcon = styled(Edit)`
   font-size: 1em;
   float: right;
   &:hover {
-    color: #80bad9;
+    color: #17b1ff;
   }
 `;
 
