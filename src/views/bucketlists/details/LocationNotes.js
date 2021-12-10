@@ -4,7 +4,7 @@ import { Edit } from '@mui/icons-material';
 import { LoadingButton } from '@mui/lab';
 import { TextField } from '@mui/material';
 
-const Notes = styled.p`
+const Notes = styled.div`
   font-size: 0.8em;
   padding: 0;
   margin: 0;
@@ -36,7 +36,7 @@ const LocationNotes = ({ location, appState, auth }) => {
   const { bucketlist, setBucketlist, bucketlists, setBucketlists } = appState;
 
   const [editMode, setEditMode] = useState(false);
-  const [editInput, setEditInput] = useState(location.notes);
+  const [editInput, setEditInput] = useState(location.notes || '');
   const [loading, setLoading] = useState(false);
 
   const toggleEdit = () => {
@@ -51,6 +51,50 @@ const LocationNotes = ({ location, appState, auth }) => {
     e.preventDefault();
     setLoading(true);
     console.log(editInput);
+    fetch(`${process.env.REACT_APP_WANDERLIST_API}/bucketlists/${bucketlist.id}/destinations/${location.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'PIN': auth
+      },
+      body: JSON.stringify({notes: editInput})
+    })
+      .then(res => res.json())
+      .then(json => {
+        setBucketlist({
+          ...bucketlist,
+          bucketlist_destinations: bucketlist.bucketlist_destinations.map(mappedDestination => {
+            if (mappedDestination.id === location.id) {
+              return {
+                ...mappedDestination,
+                notes: json.notes
+              }
+            }
+            return mappedDestination;
+          })
+        })
+        setBucketlists(bucketlists.map(mappedList => {
+          if (mappedList.id === bucketlist.id) {
+            return {
+              ...mappedList,
+              bucketlist_destinations: mappedList.bucketlist_destinations.map(mappedDestination => {
+                if (mappedDestination.id === location.id) {
+                  return {
+                    ...mappedDestination,
+                    notes: json.notes
+                  }
+                }
+                return mappedDestination;
+              })
+            }
+          }
+          return mappedList;
+        }))
+        toggleEdit();
+        setLoading(false);
+      })
+      .catch(err => console.log(err))
   }
 
   const renderEditMode = () => {
