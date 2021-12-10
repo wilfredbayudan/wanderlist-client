@@ -9,6 +9,7 @@ import { FlyToInterpolator } from 'react-map-gl';
 import { easeCubic } from 'd3-ease';
 import TextField from '@mui/material/TextField';
 import DestinationSearch from '../manage/DestinationSearch';
+import DeleteBucketlist from '../manage/DeleteBucketlist';
 
 const BucketlistHeader = styled.div`
   width: 100%;
@@ -27,7 +28,13 @@ const Description = styled.p`
   border-radius: 5px;
   background-color: #f2f2f2;
   font-size: 0.9em;
-`
+`;
+
+const Name = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`; 
 
 function Bucketlist( { appState }) {
 
@@ -104,10 +111,11 @@ function Bucketlist( { appState }) {
     }
   }, [params.id, setBucketlist, setDisplayContent, bucketlist, setCurrentList, setMarkers, setViewport, navigate, setDialog])
 
-  const authDisplay = (display) => {
+  const authDisplay = (display, nonAuthDisplay=null) => {
     if (isAuth) {
       return display;
     }
+    return nonAuthDisplay;
   }
 
   const auth = isAuth ? authPin : false;
@@ -119,7 +127,12 @@ function Bucketlist( { appState }) {
     return (
       <>
         <BucketlistHeader>
-          <h2>{bucketlist.name}</h2>
+          <Name>
+            <h2>{bucketlist.name}</h2>
+            {
+              authDisplay(<DeleteBucketlist appState={appState} authPin={authPin} />)
+            }
+          </Name>
           { 
             authDisplay(<TextField fullWidth label="Manage this listing at" disabled size="small" value={`${process.env.REACT_APP_WANDERLIST_URL}/bucketlists/${bucketlist.id}?pin=${authPin}`}/>)
           }

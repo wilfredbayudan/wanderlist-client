@@ -8,13 +8,21 @@ const List = styled.ul`
   margin: 0;
 `;
 
+const P = styled.p`
+  padding: 15px;
+  margin: 0;
+`;
+
 const BucketlistsList = ({ appState, bucketlists}) => {
 
-  return (
-    <List>
-      {bucketlists.map(bucketlist => <BucketlistsListItem key={bucketlist.id} appState={appState} selectedBucketlist={bucketlist} />)}
-    </List>
-  )
+  if (bucketlists.length > 0) {
+    return (
+      <List>
+        {bucketlists.map(bucketlist => <BucketlistsListItem key={bucketlist.id} appState={appState} selectedBucketlist={bucketlist} />)}
+      </List>
+    )
+  }
+  return <P>No bucketlists have been added yet, be the first!</P>
 }
 
 export default BucketlistsList;

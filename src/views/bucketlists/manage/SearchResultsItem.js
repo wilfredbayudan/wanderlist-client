@@ -84,10 +84,29 @@ const SearchResultsItem = ({ appState, location, authPin }) => {
           return mappedList;
         }))
         if (!destinations.find(searchDestination => searchDestination.id === json.destination.id)) {
+          const newDestinationObj = {
+            ...json.destination,
+            bucketlists: [
+              bucketlist
+            ]
+          }
           setDestinations([
             ...destinations,
-            json.destination
+            newDestinationObj 
           ])
+        } else {
+          setDestinations(destinations.map(mappedDestination => {
+            if (mappedDestination.id === json.destination.id) {
+              return {
+                ...mappedDestination,
+                bucketlists: [
+                  ...mappedDestination.bucketlists,
+                  bucketlist
+                ]
+              }
+            }
+            return mappedDestination;
+          }))
         }
       })
       .catch(err => console.log(err))

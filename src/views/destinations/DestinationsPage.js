@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 import DestinationsList from './DestinationsList';
 import LoaderOverlay from '../../components/LoaderOverlay';
 
-const DestinationsPage = ({ appState: { destinations, setDestinations, setLoaderStatus, setDisplayContent, fetchedDestinations, setFetchedDestinations } }) => {
+const DestinationsPage = ({ appState }) => {
+
+  const { destinations, setDisplayContent } = appState;
 
   useEffect(() => {
     if (destinations) {
@@ -13,7 +15,7 @@ const DestinationsPage = ({ appState: { destinations, setDestinations, setLoader
   if (destinations) {
     return (
       <div>
-        <DestinationsList filteredDestinations={destinations} />
+        <DestinationsList filteredDestinations={destinations} appState={appState} />
       </div>
     )
   }
