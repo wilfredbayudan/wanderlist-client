@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -32,6 +33,8 @@ const StyledCard = styledComponent(Card)`
 const DestinationsListItem = ({ appState, destination }) => {
 
   const [expanded, setExpanded] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -68,8 +71,8 @@ const DestinationsListItem = ({ appState, destination }) => {
         <CardContent>
           {destination.bucketlists.map(list => {
             return (
-              <p key={list.id}>
-                {list.name}
+              <p key={list.id} onClick={() => navigate(`/bucketlists/${list.id}`)}>
+                {list.name} by {list.created_by}
               </p>
             )
           })}

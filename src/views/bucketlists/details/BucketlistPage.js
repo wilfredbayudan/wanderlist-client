@@ -10,6 +10,7 @@ import { easeCubic } from 'd3-ease';
 import TextField from '@mui/material/TextField';
 import DestinationSearch from '../manage/DestinationSearch';
 import DeleteBucketlist from '../manage/DeleteBucketlist';
+import Description from './Description';
 
 const BucketlistHeader = styled.div`
   width: 100%;
@@ -20,14 +21,6 @@ const BucketlistHeader = styled.div`
 const LastUpdated = styled.span`
   font-size: 0.8em;
   color: #696969;
-`;
-
-const Description = styled.p`
-  width: 100%;
-  padding: 10px 6px;
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  font-size: 0.9em;
 `;
 
 const Name = styled.div`
@@ -81,7 +74,7 @@ function Bucketlist( { appState }) {
   }, [bucketlist, params.id, authPin, setIsAuth, bucketlists, setBucketlists, isAuth])
 
   useEffect(() => {
-    if (bucketlist) {
+    if (bucketlist && bucketlist.id === parseInt(params.id)) {
       setDisplayContent(true);
       setCurrentList({ name: bucketlist.name, created_by: bucketlist.created_by });
       setMarkers(mapLocationData(bucketlist.bucketlist_destinations));
@@ -136,7 +129,7 @@ function Bucketlist( { appState }) {
           { 
             authDisplay(<TextField fullWidth label="Manage this listing at" disabled size="small" value={`${process.env.REACT_APP_WANDERLIST_URL}/bucketlists/${bucketlist.id}?pin=${authPin}`}/>)
           }
-          <Description>{bucketlist.description}</Description>
+          <Description appState={appState} description={bucketlist.description} auth={auth} />
           <LastUpdated>Added {lastUpdated} by <b>{bucketlist.created_by}</b></LastUpdated>
         </BucketlistHeader>
           {
