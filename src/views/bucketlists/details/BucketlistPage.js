@@ -44,10 +44,16 @@ function Bucketlist( { appState }) {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (bucketlists) {
+      const selectedList = bucketlists.find(findList => findList.id === parseInt(params.id));
+      if ("pin" in selectedList) {
+        setIsAuth(true);
+        return;
+      }
+    }
     if (bucketlist && "pin" in bucketlist) {
       setIsAuth(true);
     } else if (params.id && authPin && !isAuth && bucketlists) {
-      console.log('Fetching...')
       fetch(`${process.env.REACT_APP_WANDERLIST_API}/bucketlists/${params.id}/auth`, {
         headers: {
           'PIN': authPin

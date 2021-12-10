@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Edit } from '@mui/icons-material';
-import { render } from '@testing-library/react';
+import { LoadingButton } from '@mui/lab';
 import { TextField } from '@mui/material';
 
 const DescriptionDiv = styled.div`
@@ -31,10 +31,17 @@ const EditTextField = styled(TextField)`
   background: #ffffff;
 `;
 
+const EditButton = styled(LoadingButton)`
+
+`;
+
 const Description = ({ appState, description, auth }) => {
 
   const [editMode, setEditMode] = useState(false); 
   const [editInput, setEditInput] = useState(description);
+  const [loading, setLoading] = useState(false);
+
+  const { bucketlist, setBucketlist, bucketlists, setBucketlists } = appState;
 
   const toggleEdit = () => {
     setEditMode(!editMode);
@@ -44,9 +51,61 @@ const Description = ({ appState, description, auth }) => {
     setEditInput(e.target.value)
   }
 
+  const handleSubmit = e => {
+    e.preventDefault();
+    setLoading(true);
+    const updatedBucketlist = {
+      ...bucketlist,
+      description: editInput
+    }
+    fetch(`${process.env.REACT_APP_WANDERLIST_API}/bucketlists/${bucketlist.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'PIN': auth
+      },
+      body: JSON.stringify(updatedBucketlist)
+    })
+      .then(res => res.json())
+      .then(json => {
+        setBucketlist({
+          ...bucketlist,
+          description: json.description
+        })
+        setBucketlists(bucketlists.map(mappedList => {
+          if (mappedList.id === bucketlist.id) {
+            return {
+              ...mappedList,
+              description: json.description
+            }
+          }
+          return mappedList;
+        }))
+        toggleEdit();
+        setLoading(false);
+      })
+      .catch(err => console.log(err))
+  }
+
   const renderEditMode = () => {
     return (
-      <EditTextField value={editInput} autoFocus size="small" onChange={handleChange} multiline rows={4} fullWidth />
+      <form onSubmit={handleSubmit}>
+        <EditTextField 
+          value={editInput} 
+          size="small" 
+          onChange={handleChange} 
+          inputRef={(input) => input && input.focus()}
+          onFocus={(e) =>
+            e.currentTarget.setSelectionRange(
+            e.currentTarget.value.length,
+            e.currentTarget.value.length
+          )}
+          multiline 
+          rows={4} 
+          fullWidth/>
+          <EditButton type="submit" loading={loading}>Save</EditButton>
+      </form>
     )
   }
 
