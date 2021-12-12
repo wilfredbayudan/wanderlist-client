@@ -31,6 +31,10 @@ const Clear = styled.div`
   clear: both;
 `;
 
+const AddSpan = styled.span`
+  cursor: pointer;
+`;
+
 const LocationNotes = ({ location, appState, auth }) => {
 
   const { bucketlist, setBucketlist, bucketlists, setBucketlists } = appState;
@@ -118,7 +122,7 @@ const LocationNotes = ({ location, appState, auth }) => {
     )
   }
 
-  const notes = location.notes ? location.notes : 'No notes';
+  const notes = location.notes ? location.notes : auth ? <AddSpan onClick={toggleEdit}>Add a note</AddSpan> : 'No notes';
 
   return (
     <Notes>

@@ -13,6 +13,13 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import styledComponent from 'styled-components'
 import DestinationLike from './DestinationLike';
 
+const P = styledComponent.p`
+  cursor: pointer;
+  &:hover {
+    color: #4faadb;
+  }
+`;
+
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -71,9 +78,9 @@ const DestinationsListItem = ({ appState, destination }) => {
         <CardContent>
           {destination.bucketlists.map(list => {
             return (
-              <p key={list.id} onClick={() => navigate(`/bucketlists/${list.id}`)}>
+              <P key={list.id} onClick={() => navigate(`/bucketlists/${list.id}`)}>
                 {list.name} by {list.created_by}
-              </p>
+              </P>
             )
           })}
         </CardContent>

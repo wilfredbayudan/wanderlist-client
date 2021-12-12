@@ -36,7 +36,7 @@ const DestinationLike = ({ destination, appState }) => {
             return {
               ...mappedDestination,
               likes: json,
-              liked: true
+              liked: !liked
             }
           }
           return mappedDestination;
