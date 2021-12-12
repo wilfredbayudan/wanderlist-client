@@ -4,11 +4,12 @@ import LoaderOverlay from '../../components/LoaderOverlay';
 
 const Bucketlists = ({ appState }) => {
 
-  const { setDisplayContent, bucketlists, setBucketlists } = appState;
+  const { setDisplayContent, bucketlists, setBucketlists, setMarkers } = appState;
 
   useEffect(() => {
     if (bucketlists) {
       setDisplayContent(true);
+      setMarkers([]);
     }
   }, [bucketlists, setDisplayContent])
 

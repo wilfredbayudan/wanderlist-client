@@ -7,10 +7,11 @@ import LoaderOverlay from './components/LoaderOverlay';
 import MainContent from './components/MainContent';
 import BucketlistsPage from './views/bucketlists/BucketlistsPage';
 import BucketlistPage from './views/bucketlists/details/BucketlistPage';
-import './App.css';
 import NewBucketlistPage from './views/bucketlists/new/NewBucketlistPage';
 import DestinationsPage from './views/destinations/DestinationsPage';
+import HomePage from './views/home/HomePage';
 import DialogOverlay from './components/DialogOverlay';
+import './App.css';
 
 const App = () => {
 
@@ -69,10 +70,11 @@ const App = () => {
       <Header />
       <MainContent displayContent={displayContent} setDisplayContent={setDisplayContent}>
         <Routes>
+          <Route exact path="/" element={<HomePage appState={appState} />} />
           <Route exact path="/bucketlists" element={<BucketlistsPage appState={appState} />} />
           <Route exact path="/bucketlists/new" element={<NewBucketlistPage appState={appState} />} />
           <Route path="/bucketlists/:id" element={<BucketlistPage appState={appState} />} />
-          <Route path="/destinations" element={<DestinationsPage appState={appState} />}></Route> 
+          <Route path="/destinations" element={<DestinationsPage appState={appState} />} />
         </Routes>
       </MainContent>
       <Footer appState={appState} />

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactMapGL, { Marker } from 'react-map-gl';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -44,7 +45,10 @@ const CurrentlyViewing = styled.div`
 
 function Map({ appState: { viewport, setViewport, markers, currentLocation, currentList }}) {
   
+  const location = useLocation();
+
   const renderMarkers = markers.map((coordinates, index) => {
+
     return (
       <Marker
         key={index}
@@ -52,7 +56,9 @@ function Map({ appState: { viewport, setViewport, markers, currentLocation, curr
         longitude={coordinates.lng}
       >
         <MarkerDiv>
-          <MarkerSpan><MarkerLabel>{index + 1}</MarkerLabel></MarkerSpan>
+          <MarkerSpan>
+            <MarkerLabel>{location.pathname === '/' ? '' : index + 1}</MarkerLabel>
+          </MarkerSpan>
         </MarkerDiv>
       </Marker>
     )

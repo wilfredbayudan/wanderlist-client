@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
@@ -45,6 +46,8 @@ const VisibilityDiv = styled.div`
 
 const MainContent = ({ children, displayContent, setDisplayContent }) => {
 
+  const locationPath = useLocation().pathname;
+
   const renderVisibilityToggle = () => {
     if (displayContent) {
       return <VisibilityOff onClick={() => setDisplayContent(false)} />
@@ -55,9 +58,13 @@ const MainContent = ({ children, displayContent, setDisplayContent }) => {
 
   return (
     <>
-      <VisibilityDiv displayContent={displayContent}>
-        {renderVisibilityToggle()}
-      </VisibilityDiv>
+      {
+        locationPath !== "/" ?
+          <VisibilityDiv displayContent={displayContent}>
+            {renderVisibilityToggle()}
+          </VisibilityDiv>
+        : null
+      }
       <Main displayContent={displayContent} >
         {children}
       </Main>
