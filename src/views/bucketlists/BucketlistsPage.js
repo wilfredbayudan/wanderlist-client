@@ -51,7 +51,7 @@ const Bucketlists = ({ appState }) => {
     let bucketlistsDisplay = sortBucketlists(bucketlists, sort);
 
     if (search.length > 0) {
-      bucketlistsDisplay = bucketlistsDisplay.filter(bucketlist => bucketlist.name.toLowerCase().includes(search.toLowerCase()));
+      bucketlistsDisplay = bucketlistsDisplay.filter(bucketlist => bucketlist.name.toLowerCase().includes(search.toLowerCase()) || bucketlist.description.toLowerCase().includes(search.toLowerCase()));
     }
 
     return (

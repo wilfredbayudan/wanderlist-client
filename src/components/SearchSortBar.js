@@ -26,7 +26,7 @@ const SearchBar = ({ search, setSearch, sort, setSort, sortOptions }) => {
     <SearchAndSort>
       <TextField
         size="small"
-        label="Search"
+        label="Search..."
         value={search}
         onChange={handleSearchChange}
         fullWidth
