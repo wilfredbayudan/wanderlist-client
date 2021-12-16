@@ -31,7 +31,7 @@ const Name = styled.div`
 
 function Bucketlist( { appState }) {
 
-  const { setDialog, setViewport, setMarkers, setDisplayContent, setCurrentList, bucketlist, setBucketlist, bucketlists, setBucketlists } = appState;
+  const { setPopup, setDialog, setViewport, setMarkers, setDisplayContent, setCurrentList, bucketlist, setBucketlist, bucketlists, setBucketlists } = appState;
 
   const [isAuth, setIsAuth] = useState(false);
 
@@ -44,6 +44,7 @@ function Bucketlist( { appState }) {
   const navigate = useNavigate();
 
   useEffect(() => {
+    setPopup(false);
     if (bucketlists) {
       const selectedList = bucketlists.find(findList => findList.id === parseInt(params.id));
       if ("pin" in selectedList) {
@@ -81,7 +82,7 @@ function Bucketlist( { appState }) {
         .catch(err => console.log(err))
     }
     return
-  }, [bucketlist, params.id, authPin, setIsAuth, bucketlists, setBucketlists, isAuth, setBucketlist])
+  }, [setPopup, bucketlist, params.id, authPin, setIsAuth, bucketlists, setBucketlists, isAuth, setBucketlist])
 
   useEffect(() => {
     if (bucketlist && bucketlist.id === parseInt(params.id)) {

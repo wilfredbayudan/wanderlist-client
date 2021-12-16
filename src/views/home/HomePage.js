@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import mapLocationData from '../../utils/mapLocationData';
 
 const HomePage = ({ appState }) => {
   

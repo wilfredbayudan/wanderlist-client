@@ -4,13 +4,15 @@ import LoaderOverlay from '../../components/LoaderOverlay';
 
 const DestinationsPage = ({ appState }) => {
 
-  const { destinations, setDisplayContent } = appState;
+  const { destinations, setDisplayContent, setMarkers, setCurrentList } = appState;
 
   useEffect(() => {
     if (destinations) {
       setDisplayContent(true);
+      setMarkers([]);
+      setCurrentList(null);
     }
-  }, [destinations, setDisplayContent])
+  }, [destinations, setDisplayContent, setMarkers, setCurrentList])
 
   if (destinations) {
     return (

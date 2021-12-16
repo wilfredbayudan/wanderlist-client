@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactMapGL, { Marker } from 'react-map-gl';
+import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -43,7 +43,7 @@ const CurrentlyViewing = styled.div`
   font-size: 0.9em;
 `;
 
-function Map({ appState: { viewport, setViewport, markers, currentLocation, currentList }}) {
+function Map({ appState: { viewport, setViewport, markers, currentLocation, currentList, popup, setPopup }}) {
   
   const location = useLocation();
 
@@ -57,7 +57,7 @@ function Map({ appState: { viewport, setViewport, markers, currentLocation, curr
       >
         <MarkerDiv>
           <MarkerSpan>
-            <MarkerLabel>{location.pathname === '/' ? '' : index + 1}</MarkerLabel>
+            <MarkerLabel>{location.pathname === '/' || location.pathname === '/destinations' ? '' : index + 1}</MarkerLabel>
           </MarkerSpan>
         </MarkerDiv>
       </Marker>
@@ -89,6 +89,22 @@ function Map({ appState: { viewport, setViewport, markers, currentLocation, curr
     }
   }
 
+  function renderPopup() {
+    if (popup) {
+      return (
+        <Popup
+          latitude={popup.lat}
+          longitude={popup.lng}
+          closeButton={false}
+          closeOnClick={false}
+          onClose={() => setPopup(false)}
+          anchor="top" >
+          <div>{popup.label}</div>
+        </Popup>
+      )
+    }
+  }
+
   return (
     <StyledMap
       {...viewport}
@@ -99,6 +115,7 @@ function Map({ appState: { viewport, setViewport, markers, currentLocation, curr
     >
       {renderCurrentList()}
       {renderMarkers}
+      {renderPopup()}
       {renderCurrentLocation()}
     </StyledMap>
   );

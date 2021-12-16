@@ -30,6 +30,7 @@ const App = () => {
   const [currentList, setCurrentList] = useState(null);
   const [destinations, setDestinations] = useState(null);
   const [dialog, setDialog] = useState(false);
+  const [popup, setPopup] = useState(false);
 
   const appState = {
     viewport, setViewport,
@@ -41,7 +42,8 @@ const App = () => {
     bucketlist, setBucketlist,
     currentList, setCurrentList,
     destinations, setDestinations,
-    dialog, setDialog
+    dialog, setDialog,
+    popup, setPopup
   }
 
   useEffect(() => {

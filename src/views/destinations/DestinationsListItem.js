@@ -8,16 +8,27 @@ import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import styledComponent from 'styled-components'
 import DestinationLike from './DestinationLike';
+import { Map } from '@mui/icons-material';
+import { FlyToInterpolator } from 'react-map-gl';
+import { easeCubic } from 'd3-ease';
+import { Comment } from '@mui/icons-material';
 
-const P = styledComponent.p`
+const Ul = styledComponent.ul`
+  margin: 0;
+  padding: 0;
+  list-style-type: none;  
+`;
+
+const Li = styledComponent.li`
   cursor: pointer;
   &:hover {
     color: #4faadb;
   }
+  margin: 5px;
+  padding: 0;
 `;
 
 const ExpandMore = styled((props) => {
@@ -37,7 +48,34 @@ const StyledCard = styledComponent(Card)`
   // }
 `;
 
+const SubHeader = styledComponent.div`
+  cursor: pointer;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 10px;
+  &:hover {
+    color: #4faadb;
+  }
+`;
+
 const DestinationsListItem = ({ appState, destination }) => {
+
+  const { viewport, setViewport, setMarkers, setPopup } = appState;
+
+  function flyToLocation() {
+    setViewport({
+      ...viewport,
+      longitude: destination.lng,
+      latitude: destination.lat,
+      zoom: 6,
+      transitionDuration: 2000,
+      transitionInterpolator: new FlyToInterpolator(),
+      transitionEasing: easeCubic
+    });
+    setMarkers([destination]);
+    setPopup(destination);
+  }
 
   const [expanded, setExpanded] = useState(false);
 
@@ -53,7 +91,7 @@ const DestinationsListItem = ({ appState, destination }) => {
     <StyledCard>
       <CardHeader
         title={destination.label}
-        subheader={latLong}
+        subheader={<SubHeader onClick={flyToLocation}><Map />{latLong}</SubHeader>}
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
@@ -63,7 +101,7 @@ const DestinationsListItem = ({ appState, destination }) => {
       <CardActions disableSpacing>
         <DestinationLike destination={destination} appState={appState} /> {destination.likes}
         <IconButton aria-label="share">
-          <ShareIcon />
+          <Comment />
         </IconButton>
         <ExpandMore
           expand={expanded}
@@ -76,13 +114,15 @@ const DestinationsListItem = ({ appState, destination }) => {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          {destination.bucketlists.map(list => {
-            return (
-              <P key={list.id} onClick={() => navigate(`/bucketlists/${list.id}`)}>
-                {list.name} by {list.created_by}
-              </P>
-            )
-          })}
+          <Ul>
+            {destination.bucketlists.map(list => {
+              return (
+                <Li key={list.id} onClick={() => navigate(`/bucketlists/${list.id}`)}>
+                  {list.name} by {list.created_by}
+                </Li>
+              )
+            })}
+          </Ul>
         </CardContent>
       </Collapse>
     </StyledCard>
