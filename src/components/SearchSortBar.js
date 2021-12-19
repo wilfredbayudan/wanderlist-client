@@ -10,6 +10,7 @@ const SearchAndSort = styled.div`
   display: flex;
   padding: 8px;
   gap: 10px;
+  margin-top: 10px;
 `;
 
 const SearchBar = ({ search, setSearch, sort, setSort, sortOptions }) => {

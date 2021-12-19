@@ -22,7 +22,7 @@ const BucketlistsList = ({ appState, bucketlists}) => {
       </List>
     )
   }
-  return <P>No bucketlists have been added yet, be the first!</P>
+  return <P>No bucketlists found!</P>
 }
 
 export default BucketlistsList;

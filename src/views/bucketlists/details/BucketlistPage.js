@@ -11,6 +11,7 @@ import TextField from '@mui/material/TextField';
 import DestinationSearch from '../manage/DestinationSearch';
 import DeleteBucketlist from '../manage/DeleteBucketlist';
 import Description from './Description';
+import BucketlistLike from './BucketlistLike';
 
 const BucketlistHeader = styled.div`
   width: 100%;
@@ -29,6 +30,12 @@ const Name = styled.div`
   align-items: center;
 `; 
 
+const Actions = styled.div`
+  display: flex;
+  justify-content: left;
+  align-items: center;
+`;
+
 function Bucketlist( { appState }) {
 
   const { setPopup, setDialog, setViewport, setMarkers, setDisplayContent, setCurrentList, bucketlist, setBucketlist, bucketlists, setBucketlists } = appState;
@@ -45,7 +52,7 @@ function Bucketlist( { appState }) {
 
   useEffect(() => {
     setPopup(false);
-    if (bucketlists) {
+    if (bucketlists && bucketlist) {
       const selectedList = bucketlists.find(findList => findList.id === parseInt(params.id));
       if ("pin" in selectedList) {
         setIsAuth(true);
@@ -103,7 +110,6 @@ function Bucketlist( { appState }) {
           if (res.status < 500) {
             return res.json();
           } else {
-            setDialog('That bucketlist could not be found.');
             navigate('/bucketlists');
           }
         })
@@ -142,6 +148,9 @@ function Bucketlist( { appState }) {
           }
           <Description appState={appState} description={bucketlist.description} auth={auth} />
           <LastUpdated>Added {lastUpdated} by <b>{bucketlist.created_by}</b></LastUpdated>
+          <Actions>
+            <BucketlistLike appState={appState} />
+          </Actions>
         </BucketlistHeader>
           {
             authDisplay(<DestinationSearch appState={appState} authPin={authPin} />)
