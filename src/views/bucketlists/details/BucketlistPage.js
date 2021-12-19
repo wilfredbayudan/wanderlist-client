@@ -19,7 +19,7 @@ const BucketlistHeader = styled.div`
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 `;
 
-const LastUpdated = styled.span`
+const CreatedAt = styled.span`
   font-size: 0.8em;
   color: #696969;
 `;
@@ -132,7 +132,7 @@ function Bucketlist( { appState }) {
 
   if (bucketlist) {
 
-    const lastUpdated = timeAgo(bucketlist.updated_at)
+    const createdAt = timeAgo(bucketlist.created_at)
 
     return (
       <>
@@ -147,7 +147,7 @@ function Bucketlist( { appState }) {
             authDisplay(<TextField fullWidth label="Manage this listing at" disabled size="small" value={`${process.env.REACT_APP_WANDERLIST_URL}/bucketlists/${bucketlist.id}?pin=${authPin}`}/>)
           }
           <Description appState={appState} description={bucketlist.description} auth={auth} />
-          <LastUpdated>Added {lastUpdated} by <b>{bucketlist.created_by}</b></LastUpdated>
+          <CreatedAt>Added {createdAt} by <b>{bucketlist.created_by}</b></CreatedAt>
           <Actions>
             <BucketlistLike appState={appState} />
           </Actions>
