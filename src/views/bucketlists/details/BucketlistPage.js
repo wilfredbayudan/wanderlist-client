@@ -12,6 +12,7 @@ import DestinationSearch from '../manage/DestinationSearch';
 import DeleteBucketlist from '../manage/DeleteBucketlist';
 import Description from './Description';
 import BucketlistLike from './BucketlistLike';
+import CommentAction from '../../../components/CommentAction';
 
 const BucketlistHeader = styled.div`
   width: 100%;
@@ -41,6 +42,8 @@ function Bucketlist( { appState }) {
   const { setPopup, setDialog, setViewport, setMarkers, setDisplayContent, setCurrentList, bucketlist, setBucketlist, bucketlists, setBucketlists } = appState;
 
   const [isAuth, setIsAuth] = useState(false);
+
+  const [showComments, setShowComments] = useState(false);
 
   const params = useParams();
 
@@ -130,6 +133,8 @@ function Bucketlist( { appState }) {
 
   const auth = isAuth ? authPin : false;
 
+  console.log(showComments);
+
   if (bucketlist) {
 
     const createdAt = timeAgo(bucketlist.created_at)
@@ -150,6 +155,7 @@ function Bucketlist( { appState }) {
           <CreatedAt>Added {createdAt} by <b>{bucketlist.created_by}</b></CreatedAt>
           <Actions>
             <BucketlistLike appState={appState} />
+            <CommentAction setShowComments={setShowComments} />
           </Actions>
         </BucketlistHeader>
           {

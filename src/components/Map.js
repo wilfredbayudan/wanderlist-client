@@ -3,6 +3,7 @@ import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import DestinationPopup from './DestinationPopup';
 
 const StyledMap = styled(ReactMapGL)`
   z-index: 0;
@@ -43,8 +44,10 @@ const CurrentlyViewing = styled.div`
   font-size: 0.9em;
 `;
 
-function Map({ appState: { viewport, setViewport, markers, currentLocation, currentList, popup, setPopup }}) {
+function Map({ appState }) {
   
+  const { viewport, setViewport, markers, currentLocation, currentList, popup, setPopup } = appState;
+
   const location = useLocation();
 
   const renderMarkers = markers.map((coordinates, index) => {
@@ -55,7 +58,7 @@ function Map({ appState: { viewport, setViewport, markers, currentLocation, curr
         latitude={coordinates.lat}
         longitude={coordinates.lng}
       >
-        <MarkerDiv>
+        <MarkerDiv onClick={() => setPopup(coordinates)}>
           <MarkerSpan>
             <MarkerLabel>{location.pathname === '/' || location.pathname === '/destinations' ? '' : index + 1}</MarkerLabel>
           </MarkerSpan>
@@ -90,16 +93,17 @@ function Map({ appState: { viewport, setViewport, markers, currentLocation, curr
   }
 
   function renderPopup() {
+
     if (popup) {
       return (
         <Popup
           latitude={popup.lat}
           longitude={popup.lng}
-          closeButton={false}
-          closeOnClick={false}
+          closeButton={true}
+          closeOnClick={true}
           onClose={() => setPopup(false)}
           anchor="top" >
-          <div>{popup.label}</div>
+          <DestinationPopup id={popup.id} />
         </Popup>
       )
     }

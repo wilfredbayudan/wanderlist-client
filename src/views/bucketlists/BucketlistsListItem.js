@@ -46,15 +46,17 @@ const EditIcon = styled(EditOutlined)`
   }
 `;
 
-const BucketlistsListItem = ( { appState: { bucketlist, setLoaderStatus, setMarkers, setBucketlist, setCurrentList, viewport, setViewport }, selectedBucketlist }) => {
+const BucketlistsListItem = ( { appState: { setPopup, bucketlist, setLoaderStatus, setMarkers, setBucketlist, setCurrentList, viewport, setViewport, currentList }, selectedBucketlist }) => {
 
   const navigate = useNavigate();
 
   const coordinates = mapLocationData(selectedBucketlist.bucketlist_destinations);
 
   function assignMarkers() {
+    if (currentList && currentList.id === selectedBucketlist.id) return;
+    setPopup(false);
     setMarkers(coordinates);
-    setCurrentList({ name: selectedBucketlist.name, created_by: selectedBucketlist.created_by })
+    setCurrentList({ id: selectedBucketlist.id, name: selectedBucketlist.name, created_by: selectedBucketlist.created_by })
     setViewport({
       ...viewport,
       latitude: 11.1784,

@@ -12,6 +12,7 @@ const Bucketlists = ({ appState }) => {
     if (bucketlists) {
       setDisplayContent(true);
       setMarkers([]);
+      setPopup(false);
     }
   }, [setPopup, bucketlists, setDisplayContent, setMarkers])
 
