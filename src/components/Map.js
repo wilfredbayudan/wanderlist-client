@@ -103,7 +103,7 @@ function Map({ appState }) {
           closeOnClick={true}
           onClose={() => setPopup(false)}
           anchor="top" >
-          <DestinationPopup id={popup.id} />
+          <DestinationPopup id={popup.id} appState={appState} />
         </Popup>
       )
     }

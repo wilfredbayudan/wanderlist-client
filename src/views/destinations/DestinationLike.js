@@ -7,17 +7,17 @@ const LikeIcon = styled(FavoriteIcon)`
   color: ${props => props.liked === 'true' ? 'red' : '#757575'};
 `;
 
-const DestinationLike = ({ destination, appState }) => {
+const DestinationLike = ({ destination, appState, setPopupDestination = false }) => {
 
   const { destinations, setDestinations } = appState;
 
   const [liked, setLiked] = useState(false);
 
   useEffect(() => {
-    if (destination.liked) {
+    if (destination.liked || (destinations && destinations.find(desFind => desFind.id === destination.id).liked)) {
       setLiked(true);
     }
-  }, [destination.liked, setLiked]);
+  }, [destination.liked, setLiked, destinations, destination.id]);
 
   const handleLikeToggle = () => {
     const method = liked ? 'dislike' : 'like';
@@ -41,6 +41,12 @@ const DestinationLike = ({ destination, appState }) => {
           }
           return mappedDestination;
         }))
+        if (setPopupDestination) {
+          setPopupDestination({
+            ...destination,
+            likes: json
+          })
+        }
         setLiked(!liked);
       })
       .catch(err => console.log(err))
