@@ -22,7 +22,8 @@ const MarkerSpan = styled.span`
   width: 30px;
   height: 30px;
   color:#fff;
-  background: #9575d5;
+  background: ${props => props.color ? props.color : '#9575d5'};
+  /* background: #9575d5; */
   border:solid 2px;
   border-radius: 0 70% 70%;
   box-shadow:0 0 2px #000;
@@ -51,6 +52,10 @@ function Map({ appState }) {
   const location = useLocation();
 
   const renderMarkers = markers.map((coordinates, index) => {
+    
+    const handleMarkerClick = () => {
+      setPopup(coordinates);
+    }
 
     return (
       <Marker
@@ -58,8 +63,8 @@ function Map({ appState }) {
         latitude={coordinates.lat}
         longitude={coordinates.lng}
       >
-        <MarkerDiv onClick={() => setPopup(coordinates)}>
-          <MarkerSpan>
+        <MarkerDiv onClick={handleMarkerClick}>
+          <MarkerSpan color={coordinates.color}>
             <MarkerLabel>{location.pathname === '/' || location.pathname === '/destinations' ? '' : index + 1}</MarkerLabel>
           </MarkerSpan>
         </MarkerDiv>
@@ -94,7 +99,7 @@ function Map({ appState }) {
 
   function renderPopup() {
 
-    if (popup) {
+    if (popup && location.pathname !== '/destinations') {
       return (
         <Popup
           latitude={popup.lat}

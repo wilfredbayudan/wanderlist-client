@@ -14,9 +14,10 @@ const DestinationLike = ({ destination, appState, setPopupDestination = false })
   const [liked, setLiked] = useState(false);
 
   useEffect(() => {
-    if (destination.liked || (destinations && destinations.find(desFind => desFind.id === destination.id).liked)) {
-      setLiked(true);
-    }
+    setLiked(destination.liked || (destinations && destinations.find(desFind => desFind.id === destination.id).liked))
+    // if (destination.liked || (destinations && destinations.find(desFind => desFind.id === destination.id).liked)) {
+    //   setLiked(true);
+    // }
   }, [destination.liked, setLiked, destinations, destination.id]);
 
   const handleLikeToggle = () => {

@@ -4,9 +4,23 @@ const HomePage = ({ appState }) => {
   
   const { setMarkers, destinations } = appState;
 
+  const generateMarkerColor = () => {
+    let letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
   useEffect(() => {
     if (destinations) {
-      setMarkers(destinations);
+      setMarkers(destinations.map(destination => {
+        return {
+          ...destination,
+          color: generateMarkerColor()
+        }
+      }));
     }
   }, [setMarkers, destinations])
 
