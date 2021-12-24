@@ -47,7 +47,6 @@ const CommentForm = ({ source, setSource }) => {
 
   const handleSubmit = () => {
     setLoading(true);
-    console.log(formData);
     fetch(`${process.env.REACT_APP_WANDERLIST_API}/bucketlists/${source.id}/comments`, {
       method: "POST",
       headers: {
@@ -58,7 +57,6 @@ const CommentForm = ({ source, setSource }) => {
     })
       .then(res => res.json())
       .then(json => {
-        console.log(json)
         setLoading(false);
         setPostSuccess(true);
         setFormData({
