@@ -2,17 +2,17 @@
 
 Wanderlist is a web-based app that helps travelers and aspiring travelers share ideas on destinations they should visit.
 
-# Technologies
+## Technologies
 * JavaScript / React
 * Ruby / Sinatra
 * SQLite 
 
-# APIs
+## APIs
 * [MapBox](https://www.mapbox.com/)
 * [PositionStack](https://positionstack.com/)
 * [Wanderlist API](https://github.com/wilfredbayudan/wanderlist-server)
 
-# Features
+## Features
 - [x] **C**reate / **R**ead / **U**pdate / **D**elete bucketlists
 - [x] Add destinations to a bucketlists
 - [x] Like/Dislike bucketlists
@@ -23,7 +23,7 @@ Wanderlist is a web-based app that helps travelers and aspiring travelers share 
 - [ ] Rate a destination
 - [x] Interactive map integration with markers and popups
 
-# Installation
+## Installation
 1. **IMPORTANT!** Clone and install the [backend repository](https://github.com/wilfredbayudan/wanderlist-server) before continuing.
 2. Clone this repository.
 3. Sign-up and create free API keys for [PositionStack](https://positionstack.com/) and [MapBox](https://www.mapbox.com/).
@@ -40,6 +40,16 @@ REACT_APP_MAPBOX_ACCESS_TOKEN=YOUR ACCESS TOKEN HERE
 6. Run `npm start` in the Terminal to start the Wanderlist App. By default, you will be able to view the app at [http://localhost:3000](http://localhost:3000). 
 
 Have fun!
+
+## Usage
+
+### Routes
+*`/` - Home Page
+*`/bucketlists` - Bucketlists
+*`/bucketlists/:id` - Bucketlists
+*`/bucketlists/new` - New Bucketlist
+*`/destinations` - Destinations
+*`/destinations/:id` - Destinations
 
 ## Contributing
 
