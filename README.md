@@ -37,7 +37,9 @@ REACT_APP_POSITIONSTACK_KEY=YOUR POSITIONSTACK API KEY HERE
 REACT_APP_MAPBOX_ACCESS_TOKEN=YOUR ACCESS TOKEN HERE
 ```
 5. Run `npm install` in the Terminal to install dependencies.
-6. Run `npm start` in the Terminal to start the Wanderlist App. By default, you will be able to view the app at [http://localhost:3000](http://localhost:3000). Have fun!
+6. Run `npm start` in the Terminal to start the Wanderlist App. By default, you will be able to view the app at [http://localhost:3000](http://localhost:3000). 
+
+Have fun!
 
 ## Contributing
 
