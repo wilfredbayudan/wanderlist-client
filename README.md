@@ -24,7 +24,7 @@ Wanderlist is a web-based app that helps travelers and aspiring travelers share 
 - [x] Interactive map integration with markers and popups
 
 # Installation
-1. **IMPORTANT!** Clone and install the [backend repository](https://github.com/wilfredbayudan/wanderlist-server).
+1. **IMPORTANT!** Clone and install the [backend repository](https://github.com/wilfredbayudan/wanderlist-server) before continuing.
 2. Clone this repository.
 3. Sign-up and create free API keys for [PositionStack](https://positionstack.com/) and [MapBox](https://www.mapbox.com/).
 4. Create a file called `.env.development` in the root directory (for development purposes) or use the following example to set your production environment variables:
