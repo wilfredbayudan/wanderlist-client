@@ -21,4 +21,4 @@ Wanderlist is a web-based app that helps travelers and aspiring travelers share 
 - [ ] Comment on a destination
 - [ ] Rate a bucketlist
 - [ ] Rate a destination
-- [x] Interactive map integration
+- [x] Interactive map integration with markers and popups
