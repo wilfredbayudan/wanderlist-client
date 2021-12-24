@@ -45,7 +45,7 @@ Contributing Bug reports and pull requests are welcome on GitHub at https://gith
 
 ## License
 
-The package is available as open source under the terms of the MIT License.
+This project is available as open source under the terms of the MIT License.
 
 ## Code of Conduct
 
