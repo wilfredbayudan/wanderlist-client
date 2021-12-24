@@ -14,7 +14,6 @@ import DestinationLike from './DestinationLike';
 import { Map } from '@mui/icons-material';
 import { FlyToInterpolator } from 'react-map-gl';
 import { easeCubic } from 'd3-ease';
-import { Comment } from '@mui/icons-material';
 
 const Ul = styledComponent.ul`
   margin: 0;
@@ -100,9 +99,6 @@ const DestinationsListItem = ({ appState, destination }) => {
       </CardContent>
       <CardActions disableSpacing>
         <DestinationLike destination={destination} appState={appState} /> {destination.likes}
-        <IconButton aria-label="share">
-          <Comment />
-        </IconButton>
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}

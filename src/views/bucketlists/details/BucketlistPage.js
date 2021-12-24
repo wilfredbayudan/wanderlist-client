@@ -43,8 +43,6 @@ function Bucketlist( { appState }) {
 
   const [isAuth, setIsAuth] = useState(false);
 
-  const [showComments, setShowComments] = useState(false);
-
   const params = useParams();
 
   const [searchParams] = useSearchParams();
@@ -133,8 +131,6 @@ function Bucketlist( { appState }) {
 
   const auth = isAuth ? authPin : false;
 
-  console.log(showComments);
-
   if (bucketlist) {
 
     const createdAt = timeAgo(bucketlist.created_at)
@@ -155,7 +151,7 @@ function Bucketlist( { appState }) {
           <CreatedAt>Added {createdAt} by <b>{bucketlist.created_by}</b></CreatedAt>
           <Actions>
             <BucketlistLike appState={appState} />
-            <CommentAction setShowComments={setShowComments} />
+            <CommentAction source={bucketlist} setSource={setBucketlists} type="bucketlist" />
           </Actions>
         </BucketlistHeader>
           {
