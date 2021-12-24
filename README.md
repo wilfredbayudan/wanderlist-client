@@ -12,9 +12,9 @@ Wanderlist is a web-based app that helps travelers and aspiring travelers share 
 * [PositionStack](https://positionstack.com/)
 * [Wanderlist API](https://github.com/wilfredbayudan/wanderlist-server)
 
-# Current Features
-* **C**reate / **R**ead / **U**pdate / **D**elete Bucketlists
-* Add Destinations to Bucketlists
-* Like/Dislike Bucketlists and Destinations
-* Comment on Bucketlists
-* Interactive map integration
+# Features
+- [x] **C**reate / **R**ead / **U**pdate / **D**elete Bucketlists
+- [x] Add Destinations to Bucketlists
+- [x] Like/Dislike Bucketlists and Destinations
+- [x] Comment on Bucketlists
+- [x] Interactive map integration
