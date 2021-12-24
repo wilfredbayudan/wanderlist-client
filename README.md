@@ -44,12 +44,12 @@ Have fun!
 ## Usage
 
 ### Routes
-*`/` - Home Page
-*`/bucketlists` - Bucketlists
-*`/bucketlists/:id` - Bucketlists
-*`/bucketlists/new` - New Bucketlist
-*`/destinations` - Destinations
-*`/destinations/:id` - Destinations
+* `/` - Home Page
+* `/bucketlists` - Bucketlists
+* `/bucketlists/:id` - Bucketlists
+* `/bucketlists/new` - New Bucketlist
+* `/destinations` - Destinations
+* `/destinations/:id` - Destinations
 
 ## Contributing
 
