@@ -1,11 +1,19 @@
 import React from 'react';
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import CommentList from './CommentList';
+import styled from 'styled-components';
+import CommentForm from './CommentForm';
+
+const Span = styled.span`
+  color: #646464;
+`;
+
+const Title = styled.span`
+  color: #008ed9;
+`;
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -28,10 +36,12 @@ const CommentDialog = ({ source, setSource, type, showComments, setShowComments 
         fullWidth
         maxWidth="sm"
       >
+        <DialogTitle>
+          <Title>{source.name || source.label}</Title> /
+          <Span> Comments</Span>
+        </DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Comments for {source.name || source.label}
-          </DialogContentText>
+          <CommentForm source={source} setSource={setSource} />
           <CommentList comments={source.comments} />
         </DialogContent>
       </Dialog>

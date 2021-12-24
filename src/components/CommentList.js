@@ -18,7 +18,7 @@ const CommentList = ({ comments }) => {
           </ListItemAvatar>
           <ListItemText
             primary={comment.comment}
-            secondary={`Posted by ${comment.created_by} ${timeAgo(comment.created_at)}`}
+            secondary={`Posted ${timeAgo(comment.created_at)} by ${comment.created_by}`}
           />
         </ListItem>
         <Divider variant="inset" component="li" />
@@ -28,7 +28,9 @@ const CommentList = ({ comments }) => {
 
   return (
     <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-      {renderComments}
+      {
+        comments.length > 0 ? renderComments : 'No comments yet, be the first!'
+      }
     </List>
   );
 }
