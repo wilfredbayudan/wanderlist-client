@@ -38,3 +38,15 @@ REACT_APP_MAPBOX_ACCESS_TOKEN=YOUR ACCESS TOKEN HERE
 ```
 5. Run `npm install` in the Terminal to install dependencies.
 6. Run `npm start` in the Terminal to start the Wanderlist App. By default, you will be able to view the app [http://localhost:3000](http://localhost:3000). Have fun!
+
+## Contributing
+
+Contributing Bug reports and pull requests are welcome on GitHub at https://github.com/wilfredbayudan/wanderlist-client. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the code of conduct.
+
+## License
+
+The package is available as open source under the terms of the MIT License.
+
+## Code of Conduct
+
+Everyone interacting in the joke-frontend project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the code of conduct.
