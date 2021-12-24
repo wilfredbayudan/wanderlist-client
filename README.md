@@ -45,6 +45,7 @@ Have fun!
 
 ### Routes
 * `/` - Homepage
+
 The homepage renders a collection of markers on a map. Each marker represents a destination that has been added to a bucketlist. Clicking on a marker will reveal additional details about the destination such as the name of the location, it's coordinates, how many bucketlists it has been added to, as well as the ability to like the destination.
 * `/bucketlists` - Bucketlists
 * `/bucketlists/:id` - Bucketlist Details
