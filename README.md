@@ -25,4 +25,8 @@ Wanderlist is a web-based app that helps travelers and aspiring travelers share 
 
 # Installation
 1. **IMPORTANT!** Clone and install the [backend repository](https://github.com/wilfredbayudan/wanderlist-server).
-2. Signup and create free API keys from [PositionStack](https://positionstack.com/) and [MapBox](https://www.mapbox.com/).
+2. Sign-up and create free API keys for [PositionStack](https://positionstack.com/) and [MapBox](https://www.mapbox.com/).
+3. Create a file called `.env.development` in the root directory (for development purposes) or create the following environment variables:
+`
+d
+`
