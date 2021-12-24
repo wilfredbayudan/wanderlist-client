@@ -1,6 +1,6 @@
 # Wanderlist App
 
-Wanderlist is a web-based app that helps travelers and aspiring travelers gain inspiration on destinations to visit by allowing users to create and share lists of locations.
+Wanderlist is a web-based app that helps travelers and aspiring travelers share ideas on destinations they should visit.
 
 # Technologies
 * JavaScript / React
