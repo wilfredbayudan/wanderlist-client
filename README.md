@@ -30,7 +30,7 @@ Wanderlist is a web-based app that helps travelers and aspiring travelers share 
 4. Create a file called `.env.development` in the root directory (for development purposes) or use the following example to set your production environment variables:
 
 ```
-REACT_APP_WANDERLIST_API=YOUR WANDERLIST API URL HERE (ie.http://localhost:9292
+REACT_APP_WANDERLIST_API=YOUR WANDERLIST API URL HERE (ie. http://localhost:9292)
 REACT_APP_WANDERLIST_URL=YOUR REACT APP URL HERE (ie. http://localhost:3000)
 REACT_APP_POSITIONSTACK_KEY=YOUR POSITIONSTACK API KEY HERE
 REACT_APP_MAPBOX_ACCESS_TOKEN=YOUR ACCESS TOKEN HERE
