@@ -9,7 +9,7 @@ import timeAgo from '../utils/timeAgo';
 
 const CommentList = ({ comments }) => {
 
-  const renderComments = comments.map(comment => {
+  const renderComments = comments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).map(comment => {
     return (
       <React.Fragment key={comment.id}>
         <ListItem alignItems="flex-start" key={comment.id}>
