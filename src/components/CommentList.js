@@ -5,6 +5,7 @@ import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
+import timeAgo from '../utils/timeAgo';
 
 const CommentList = ({ comments }) => {
 
@@ -17,7 +18,7 @@ const CommentList = ({ comments }) => {
           </ListItemAvatar>
           <ListItemText
             primary={comment.comment}
-            secondary={comment.created_by}
+            secondary={`Posted by ${comment.created_by} ${timeAgo(comment.created_at)}`}
           />
         </ListItem>
         <Divider variant="inset" component="li" />
