@@ -42,7 +42,7 @@ const CommentDialog = ({ source, setSource, type, showComments, setShowComments 
         </DialogTitle>
         <DialogContent>
           <CommentForm source={source} setSource={setSource} />
-          <CommentList comments={source.comments} />
+          <CommentList comments={source.comments} source={source} setSource={setSource} />
         </DialogContent>
       </Dialog>
   );

@@ -65,11 +65,15 @@ const CommentForm = ({ source, setSource }) => {
           ...formData,
           comment: ''
         });
+        const newComment = {
+          ...json,
+          author: true
+        };
         setSource({
           ...source,
           comments: [
             ...source.comments,
-            json
+            newComment
           ]
         });
       })
