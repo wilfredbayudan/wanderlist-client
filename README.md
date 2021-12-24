@@ -52,7 +52,7 @@ The homepage renders a collection of markers on a map. Each marker represents a 
 * `/bucketlists/new` - **New Bucketlist**
 * `/destinations` - **Destinations**
 
-## Contributing
+## Contributing 
 
 Contributing Bug reports and pull requests are welcome on GitHub at https://github.com/wilfredbayudan/wanderlist-client. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the code of conduct.
 
