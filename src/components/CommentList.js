@@ -10,6 +10,7 @@ import Collapse from '@mui/material/Collapse';
 import { TransitionGroup } from 'react-transition-group';
 import { DeleteForever } from '@mui/icons-material';
 import styled from 'styled-components';
+import stringAvatar from '../utils/stringAvatar';
 
 const DeleteIcon = styled(DeleteForever)`
   cursor: pointer;
@@ -39,7 +40,7 @@ const CommentList = ({ comments, source, setSource }) => {
       <Collapse key={comment.id}>
         <ListItem alignItems="flex-start" key={comment.id}>
           <ListItemAvatar>
-            <Avatar alt={comment.created_by} />
+            <Avatar {...stringAvatar(comment.created_by)} />
           </ListItemAvatar>
           <ListItemText
             primary={comment.comment}
