@@ -52,6 +52,14 @@ function Bucketlist( { appState }) {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (bucketlist && bucketlist.id === parseInt(params.id)) {
+      setDisplayContent(true);
+    } else {
+      setDisplayContent(false);
+    }
+  }, [setDisplayContent, bucketlist, params.id])
+
+  useEffect(() => {
     setPopup(false);
     if (bucketlists && bucketlist) {
       const selectedList = bucketlists.find(findList => findList.id === parseInt(params.id));
@@ -131,7 +139,7 @@ function Bucketlist( { appState }) {
 
   const auth = isAuth ? authPin : false;
 
-  if (bucketlist) {
+  if (bucketlist && bucketlist.id === parseInt(params.id)) {
 
     const createdAt = timeAgo(bucketlist.created_at)
 
