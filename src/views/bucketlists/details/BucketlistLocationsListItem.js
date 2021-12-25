@@ -41,7 +41,7 @@ color: #a92e12;
 
 function BucketlistLocationsListItem({ location, markerNum, appState, auth }) {
 
-  const { viewport, setViewport, bucketlist, setBucketlist, setLoaderStatus, bucketlists, setBucketlists } = appState;
+  const { viewport, setViewport, bucketlist, setBucketlist, setLoaderStatus, bucketlists, setBucketlists, setPopup } = appState;
 
   const [deleteDialog, setDeleteDialog] = useState(false);
 
@@ -55,6 +55,7 @@ function BucketlistLocationsListItem({ location, markerNum, appState, auth }) {
       transitionInterpolator: new FlyToInterpolator(),
       transitionEasing: easeCubic
     });
+    setPopup(location.destination);
   }
 
   const handleDelete = () => {

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import styled from 'styled-components';
 import DestinationLike from '../views/destinations/DestinationLike';
+import SeenOnBucketlistsDialog from './SeenOnBucketlistsDialog';
 
 const PopupDiv = styled.div`
   cursor: default;
@@ -24,6 +25,10 @@ const SeenOn = styled.p`
   padding: 0;
   font-size: 0.8em;
   color: #373737;
+  cursor: pointer;
+  &:hover {
+    color: #008ed9;
+  }
 `;
 
 const Likes = styled.p`
@@ -37,6 +42,7 @@ const Likes = styled.p`
 const DestinationPopup = ({ appState, id }) => {
 
   const [destination, setDestination] = useState(null);
+  const [showSeenOn, setShowSeenOn] = useState(false);
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_WANDERLIST_API}/destinations/${id}`)
@@ -53,7 +59,8 @@ const DestinationPopup = ({ appState, id }) => {
       <PopupDiv>
         <Label>{destination.label}</Label>
         <Coordinates>{latLong}</Coordinates>
-        <SeenOn>Seen on <b>{destination.bucketlists.length}</b> bucketlists</SeenOn>
+        <SeenOn onClick={() => setShowSeenOn(true)}>Seen on <b>{destination.bucketlists.length}</b> bucketlists</SeenOn>
+        <SeenOnBucketlistsDialog showSeenOn={showSeenOn} setShowSeenOn={setShowSeenOn} destination={destination} />
         <Likes><DestinationLike appState={appState} destination={destination} setPopupDestination={setDestination} /><b>{destination.likes}</b> likes</Likes>
       </PopupDiv>
     )
