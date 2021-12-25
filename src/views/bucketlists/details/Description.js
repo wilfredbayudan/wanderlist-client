@@ -73,7 +73,6 @@ const Description = ({ appState, description, auth }) => {
     })
       .then(res => res.json())
       .then(json => {
-        console.log(json);
         setBucketlist({
           ...bucketlist,
           description: json.description
