@@ -24,10 +24,10 @@ Wanderlist is a web-based app that helps travelers and aspiring travelers share 
 - [x] Interactive map integration with markers and popups
 
 ## Installation
-1. **IMPORTANT!** Clone and install the [backend repository](https://github.com/wilfredbayudan/wanderlist-server) before continuing.
-2. Clone this repository.
-3. Sign-up and create free API keys for [PositionStack](https://positionstack.com/) and [MapBox](https://www.mapbox.com/).
-4. Create a file called `.env.development` in the root directory (for development purposes) or use the following example to set your production environment variables:
+**IMPORTANT!** Clone and install the [backend repository](https://github.com/wilfredbayudan/wanderlist-server) for this project before proceeding.
+1. Clone this repository.
+2. Sign-up and create free API keys for [PositionStack](https://positionstack.com/) and [MapBox](https://www.mapbox.com/).
+3. Create a file called `.env.development` in the root directory (for development purposes) or use the following example to set your production environment variables:
 
 ```
 // .env.development
@@ -36,8 +36,8 @@ REACT_APP_WANDERLIST_URL=YOUR REACT APP URL HERE (ie. http://localhost:3000)
 REACT_APP_POSITIONSTACK_KEY=YOUR POSITIONSTACK API KEY HERE
 REACT_APP_MAPBOX_ACCESS_TOKEN=YOUR ACCESS TOKEN HERE
 ```
-5. Run `npm install` in the Terminal to install dependencies.
-6. Run `npm start` in the Terminal to start the Wanderlist App. By default, you will be able to view the app at [http://localhost:3000](http://localhost:3000). 
+4. Run `npm install` in the Terminal to install dependencies.
+5. Run `npm start` in the Terminal to start the Wanderlist App. By default, you will be able to view the app at [http://localhost:3000](http://localhost:3000). 
 
 Have fun!
 
