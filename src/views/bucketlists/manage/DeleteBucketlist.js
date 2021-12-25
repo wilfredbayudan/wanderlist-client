@@ -44,12 +44,12 @@ const DeleteBucketlist = ({ appState, authPin }) => {
     })
       .then(res => res.json())
       .then(json => {
+        navigate('/bucketlists')
         setBucketlist(null);
         setBucketlists(bucketlists.filter(filteredList => filteredList.id !== json.id));
         handleClose();
         setCurrentList(null);
         setMarkers([]);
-        navigate('/bucketlists')
       })
       .catch(err => console.log(err));
   }

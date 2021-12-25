@@ -119,6 +119,7 @@ function Bucketlist( { appState }) {
           if (res.status < 500) {
             return res.json();
           } else {
+            setDialog('Bucketlist not found.');
             navigate('/bucketlists');
           }
         })
