@@ -48,7 +48,7 @@ const DestinationPopup = ({ appState, id }) => {
     fetch(`${process.env.REACT_APP_WANDERLIST_API}/destinations/${id}`)
       .then(res => res.json())
       .then(json => setDestination(json))
-      .catch(err => console.log(err));
+      .catch(err => console.log('An error!'));
   }, [id])
 
   if (destination && destination.id === id) {

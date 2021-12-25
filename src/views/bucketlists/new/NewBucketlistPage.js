@@ -60,9 +60,15 @@ function NewBucketlistPage({ appState: { setDisplayContent, bucketlists, setBuck
         console.log(json);
         setBucketlists([
           ...bucketlists,
-          json
+          {
+            ...json,
+            comments: []
+          }
         ]);
-        setBucketlist(json);
+        setBucketlist({
+          ...json,
+          comments: []
+        });
         navigate(`/bucketlists/${json.id}?pin=${json.pin}`);
       })
       .catch(err => console.log(err))
