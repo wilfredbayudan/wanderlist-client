@@ -18,8 +18,9 @@ const Title = styled.span`
 `;
 
 const StyledListItem = styled(ListItem)`
-  cursor: ${props => props.current === 'true' ? 'default' : 'pointer'};
-  background-color: ${props => props.current === 'true' ? '#d7f2ff': 'none'};
+  cursor: pointer;
+  background-color: ${props => props.current === 'true' ? '#f8ffdd': 'none'};
+  font-weight: ${props => props.current === 'true' ? 'bold': 'normal'};
   &:hover {
     background-color: ${props => props.current === 'true' ? 'none' : '#e7f7fe'};
   }
@@ -35,6 +36,14 @@ const SeenOnBucketlistsDialog = ({ destination, showSeenOn, setShowSeenOn }) => 
   const handleClose = () => {
     setShowSeenOn(false);
   };
+
+  const handleNavigate = (id) => {
+    if (location.pathname === `/bucketlists/${id}`) {
+      handleClose();
+    } else {
+      navigate(`/bucketlists/${id}`);
+    }
+  }
 
   if (destination && showSeenOn) {
     return (
@@ -53,10 +62,9 @@ const SeenOnBucketlistsDialog = ({ destination, showSeenOn, setShowSeenOn }) => 
         <DialogContent>
         <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
           { destination.bucketlists.map(bucketlist => {
-            console.log(location.pathname === `/bucketlists/${bucketlist.id}`)
             return (
               <React.Fragment key={bucketlist.id}>
-                <StyledListItem current={location.pathname === `/bucketlists/${bucketlist.id}` ? 'true' : 'false'} alignItems="flex-start" onClick={() => navigate(`/bucketlists/${bucketlist.id}`)}>
+                <StyledListItem current={location.pathname === `/bucketlists/${bucketlist.id}` ? 'true' : 'false'} alignItems="flex-start" onClick={() => handleNavigate(bucketlist.id)}>
                   <ListItemText
                     primary={bucketlist.name}
                     secondary={`By ${bucketlist.created_by}`}

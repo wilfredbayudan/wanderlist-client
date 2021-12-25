@@ -24,10 +24,10 @@ const SeenOn = styled.p`
   margin: 10px 2px;
   padding: 0;
   font-size: 0.8em;
-  color: #373737;
+  color: #008ed9;
   cursor: pointer;
   &:hover {
-    color: #008ed9;
+    color: #02a8ff;
   }
 `;
 
