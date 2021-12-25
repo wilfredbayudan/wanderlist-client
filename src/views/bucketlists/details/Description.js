@@ -58,6 +58,7 @@ const Description = ({ appState, description, auth }) => {
       ...bucketlist,
       description: editInput
     }
+
     fetch(`${process.env.REACT_APP_WANDERLIST_API}/bucketlists/${bucketlist.id}`, {
       method: 'PATCH',
       headers: {
@@ -65,10 +66,14 @@ const Description = ({ appState, description, auth }) => {
         'Accept': 'application/json',
         'PIN': auth
       },
-      body: JSON.stringify(updatedBucketlist)
+      body: JSON.stringify({
+        ...updatedBucketlist,
+        method: "updateDetails"
+      })
     })
       .then(res => res.json())
       .then(json => {
+        console.log(json);
         setBucketlist({
           ...bucketlist,
           description: json.description

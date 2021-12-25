@@ -24,7 +24,7 @@ const Step3 = ({ formProps: { handleClose, nextStep, prevStep, handleChange, for
           name="pin"
           value={formData.pin}
           onChange={handleChange}
-          helperText="Choose a 4-10 character PIN to manage this bucketlist"
+          helperText="Choose a PIN to manage this bucketlist"
         />
       </DialogContent>
       <DialogActions>
