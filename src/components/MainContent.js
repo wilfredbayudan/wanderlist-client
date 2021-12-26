@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 const Main = styled.main`
+  display: block;
   z-index: 1;
   background-color: #ffffff;
   width: 400px;
@@ -18,9 +19,9 @@ const Main = styled.main`
   margin-right: ${props => props.displayContent ? "0" : "-395px"};
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
   @media (max-width: 768px) {
-    width: 755px;
+    width: 90%;
     background-color: rgba(255, 255, 255, 0.96);
-    margin-right: ${props => props.displayContent ? "0" : "-750px"};
+    margin-right: ${props => props.displayContent ? "0" : "-85%"};
     padding-bottom: 100px;
   }
 `;
