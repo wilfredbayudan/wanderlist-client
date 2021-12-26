@@ -7,7 +7,6 @@ import mapLocationData from '../../../utils/mapLocationData';
 import BucketlistLocationsList from './BucketlistLocationsList';
 import { FlyToInterpolator } from 'react-map-gl';
 import { easeCubic } from 'd3-ease';
-import TextField from '@mui/material/TextField';
 import DestinationSearch from '../manage/DestinationSearch';
 import DeleteBucketlist from '../manage/DeleteBucketlist';
 import Description from './Description';

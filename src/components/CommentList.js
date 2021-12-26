@@ -36,15 +36,18 @@ const CommentList = ({ comments, source, setSource }) => {
   }
 
   const renderComments = comments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).map(comment => {
+
+    const commentAuthor = comment.created_by || 'Anonymous';
+
     return (
       <Collapse key={comment.id}>
         <ListItem alignItems="flex-start" key={comment.id}>
           <ListItemAvatar>
-            <Avatar {...stringAvatar(comment.created_by)} />
+            <Avatar {...stringAvatar(commentAuthor)} />
           </ListItemAvatar>
           <ListItemText
             primary={comment.comment}
-            secondary={`Posted ${timeAgo(comment.created_at)} by ${comment.created_by}`}
+            secondary={`Posted ${timeAgo(comment.created_at)} by ${commentAuthor}`}
           />
           {comment.author ? <DeleteIcon onClick={() => handleDelete(comment.id)} /> : ''}
         </ListItem>

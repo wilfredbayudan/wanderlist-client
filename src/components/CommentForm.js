@@ -24,6 +24,7 @@ const CommentForm = ({ source, setSource }) => {
   });
 
   const [loading, setLoading] = useState(false);
+  const [disabled, setDisabled] = useState(true);
   const [postSuccess, setPostSuccess] = useState(false);
 
   useEffect(() => {
@@ -32,7 +33,15 @@ const CommentForm = ({ source, setSource }) => {
         setPostSuccess(false);
       }, 3000)
     }
-  }, [postSuccess, setPostSuccess])
+  }, [postSuccess, setPostSuccess]);
+
+  useEffect(() => {
+    if (formData.comment.length > 2) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [setDisabled, formData.comment])
 
   const handleChange = (e) => {
     setFormData({
@@ -109,7 +118,7 @@ const CommentForm = ({ source, setSource }) => {
       />
       <FormAction>
         <span>{postSuccess ? "Your comment has been posted!" : ''}</span>
-        <LoadingButton loading={loading} onClick={handleSubmit}>Post</LoadingButton>
+        <LoadingButton loading={loading} disabled={disabled} onClick={handleSubmit}>Post</LoadingButton>
       </FormAction>
       <Divider />
     </Form>    
