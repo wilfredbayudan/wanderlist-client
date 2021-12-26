@@ -26,7 +26,7 @@ const StyledListItem = styled(ListItem)`
   }
 `;
 
-const SeenOnBucketlistsDialog = ({ destination, showSeenOn, setShowSeenOn }) => {
+const SeenOnBucketlistsDialog = ({ destination, showSeenOn, setShowSeenOn, appState: { setDisplayContent } }) => {
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -39,6 +39,7 @@ const SeenOnBucketlistsDialog = ({ destination, showSeenOn, setShowSeenOn }) => 
 
   const handleNavigate = (id) => {
     if (location.pathname === `/bucketlists/${id}`) {
+      setDisplayContent(true);
       handleClose();
     } else {
       navigate(`/bucketlists/${id}`);

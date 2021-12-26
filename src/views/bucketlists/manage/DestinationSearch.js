@@ -17,7 +17,7 @@ const DestinationSearch = ({ appState, authPin }) => {
   const handleSearch = searchInput => {
     setLoaderStatus(true);
     console.log(`Searching for ${searchInput}`);
-    fetch(`http://api.positionstack.com/v1/forward?access_key=${process.env.REACT_APP_POSITIONSTACK_KEY}&query=${searchInput}&limit=3`)
+    fetch(`https://api.positionstack.com/v1/forward?access_key=${process.env.REACT_APP_POSITIONSTACK_KEY}&query=${searchInput}&limit=3`)
       .then(res => res.json())
       .then(json => {
         setLoaderStatus(false);

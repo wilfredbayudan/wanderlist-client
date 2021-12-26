@@ -22,7 +22,7 @@ const Main = styled.main`
     width: 90%;
     background-color: rgba(255, 255, 255, 0.96);
     margin-right: ${props => props.displayContent ? "0" : "-85%"};
-    padding-bottom: 100px;
+    padding-bottom: 50px;
   }
 `;
 

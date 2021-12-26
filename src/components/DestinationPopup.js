@@ -60,7 +60,7 @@ const DestinationPopup = ({ appState, id }) => {
         <Label>{destination.label}</Label>
         <Coordinates>{latLong}</Coordinates>
         <SeenOn onClick={() => setShowSeenOn(true)}>Seen on <b>{destination.bucketlists.length}</b> bucketlists</SeenOn>
-        <SeenOnBucketlistsDialog showSeenOn={showSeenOn} setShowSeenOn={setShowSeenOn} destination={destination} />
+        <SeenOnBucketlistsDialog appState={appState} showSeenOn={showSeenOn} setShowSeenOn={setShowSeenOn} destination={destination} />
         <Likes><DestinationLike appState={appState} destination={destination} setPopupDestination={setDestination} /><b>{destination.likes}</b> likes</Likes>
       </PopupDiv>
     )
