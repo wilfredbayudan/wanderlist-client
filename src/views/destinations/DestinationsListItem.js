@@ -22,6 +22,7 @@ const Ul = styledComponent.ul`
 `;
 
 const Li = styledComponent.li`
+  color: #3d3d3d;
   cursor: pointer;
   &:hover {
     color: #4faadb;
@@ -56,6 +57,19 @@ const SubHeader = styledComponent.div`
   &:hover {
     color: #4faadb;
   }
+`;
+
+const SeenOn = styledComponent.p`
+  padding: 0;
+  font-size: 0.9em;
+  color: #6b6b6b;
+  cursor: pointer;
+  &:hover {
+    color: #02a8ff;
+  }
+`;
+
+const By = styledComponent.span`
 `;
 
 const DestinationsListItem = ({ appState, destination }) => {
@@ -93,9 +107,7 @@ const DestinationsListItem = ({ appState, destination }) => {
         subheader={<SubHeader onClick={flyToLocation}><Map />{latLong}</SubHeader>}
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          Seen on <b>{destination.bucketlists.length}</b> bucketlists
-        </Typography>
+        <SeenOn onClick={handleExpandClick}>Seen on <b>{destination.bucketlists.length}</b> bucketlists</SeenOn>
       </CardContent>
       <CardActions disableSpacing>
         <DestinationLike destination={destination} appState={appState} /> {destination.likes}
@@ -114,7 +126,7 @@ const DestinationsListItem = ({ appState, destination }) => {
             {destination.bucketlists.map(list => {
               return (
                 <Li key={list.id} onClick={() => navigate(`/bucketlists/${list.id}`)}>
-                  {list.name} by {list.created_by}
+                  <b>{list.name}</b> <By>by {list.created_by}</By>
                 </Li>
               )
             })}
