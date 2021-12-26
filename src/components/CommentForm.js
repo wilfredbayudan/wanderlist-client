@@ -36,7 +36,7 @@ const CommentForm = ({ source, setSource }) => {
   }, [postSuccess, setPostSuccess]);
 
   useEffect(() => {
-    if (formData.comment.length > 2) {
+    if (formData.comment.trim().length > 2) {
       setDisabled(false);
     } else {
       setDisabled(true);

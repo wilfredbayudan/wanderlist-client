@@ -20,7 +20,9 @@ const Bucketlists = ({ appState }) => {
     { label: "Newest", value: "addedDesc" },
     { label: "Oldest", value: "addedAsc" },
     { label: "Largest", value: "sizeDesc" },
-    { label: "Smallest", value: "sizeAsc" }
+    { label: "Smallest", value: "sizeAsc" },
+    { label: "Most Liked", value: "likedDesc" },
+    { label: "Least Liked", value: "likedAsc" }
   ]
 
   const [sort, setSort] = useState(sortOptions[0].value)
@@ -38,7 +40,10 @@ const Bucketlists = ({ appState }) => {
         return data.sort((a, b) => b.bucketlist_destinations.length - a.bucketlist_destinations.length);
       case 'sizeAsc':
         return data.sort((a, b) => a.bucketlist_destinations.length - b.bucketlist_destinations.length);
-        
+      case 'likedDesc':
+        return data.sort((a, b) => b.likes - a.likes);
+      case 'likedAsc':
+        return data.sort((a, b) => a.likes - b.likes);
       default:
         return data;
     }
