@@ -18,9 +18,9 @@ const Main = styled.main`
   margin-right: ${props => props.displayContent ? "0" : "-395px"};
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
   @media (max-width: 768px) {
-    width: 90%;
+    width: 755px;
     background-color: rgba(255, 255, 255, 0.96);
-    margin-right: ${props => props.displayContent ? "0" : "-85%"};
+    margin-right: ${props => props.displayContent ? "0" : "-750px"};
     padding-bottom: 100px;
   }
 `;

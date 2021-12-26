@@ -27,6 +27,7 @@ const Name = styled.h3`
 const Description = styled.p`
   margin: 0;
   margin-top: 4px;
+  margin-bottom: 4px;
   padding: 0;
   font-size: 0.9em;
   color: #1a1a1a;
