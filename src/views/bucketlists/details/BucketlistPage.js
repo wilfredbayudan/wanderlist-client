@@ -13,6 +13,7 @@ import DeleteBucketlist from '../manage/DeleteBucketlist';
 import Description from './Description';
 import BucketlistLike from './BucketlistLike';
 import CommentAction from '../../../components/CommentAction';
+import ManageUrl from './ManageUrl';
 
 const BucketlistHeader = styled.div`
   width: 100%;
@@ -142,7 +143,7 @@ function Bucketlist( { appState }) {
 
   if (bucketlist && bucketlist.id === parseInt(params.id)) {
 
-    const createdAt = timeAgo(bucketlist.created_at)
+    const createdAt = timeAgo(bucketlist.created_at);
 
     return (
       <>
@@ -154,7 +155,7 @@ function Bucketlist( { appState }) {
             }
           </Name>
           { 
-            authDisplay(<TextField fullWidth label="Manage this listing at" disabled size="small" value={`${process.env.REACT_APP_WANDERLIST_URL}/bucketlists/${bucketlist.id}?pin=${authPin}`}/>)
+            authDisplay(<ManageUrl manageUrl={`${process.env.REACT_APP_WANDERLIST_URL}/bucketlists/${bucketlist.id}?pin=${authPin}`} />)
           }
           <Description appState={appState} description={bucketlist.description} auth={auth} />
           <CreatedAt>Added {createdAt} by <b>{bucketlist.created_by}</b></CreatedAt>
