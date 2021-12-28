@@ -60,6 +60,7 @@ const DeleteDialog = ({ bucketlistId }) => {
           navigate(`/bucketlists/${bucketlistId}?pin=${pinInput}`)
         } else {
           // Invalid PIN
+          setPinInput('');
           setLoading(false);
           setError(true);
         }
