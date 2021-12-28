@@ -13,6 +13,7 @@ import Description from './Description';
 import BucketlistLike from './BucketlistLike';
 import CommentAction from '../../../components/CommentAction';
 import ManageUrl from './ManageUrl';
+import Manage from '../manage/Manage';
 
 const BucketlistHeader = styled.div`
   width: 100%;
@@ -167,6 +168,11 @@ function Bucketlist( { appState }) {
             authDisplay(<DestinationSearch appState={appState} authPin={authPin} />)
           }
         <BucketlistLocationsList auth={auth} appState={appState} locations={bucketlist.bucketlist_destinations} />
+        {
+          !isAuth ?
+            <Manage bucketlistId={bucketlist.id} />
+          : ''
+        }
       </>
     )
   }
