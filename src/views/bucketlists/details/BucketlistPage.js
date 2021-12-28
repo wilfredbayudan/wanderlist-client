@@ -44,6 +44,8 @@ function Bucketlist( { appState }) {
 
   const [isAuth, setIsAuth] = useState(false);
 
+  const [manageMode, setManageMode] = useState(true);
+
   const params = useParams();
 
   const [searchParams] = useSearchParams();
@@ -133,10 +135,14 @@ function Bucketlist( { appState }) {
   }, [params.id, setBucketlist, setDisplayContent, bucketlist, setCurrentList, setMarkers, setViewport, navigate, setDialog])
 
   const authDisplay = (display, nonAuthDisplay=null) => {
-    if (isAuth) {
+    if (isAuth && manageMode) {
       return display;
     }
     return nonAuthDisplay;
+  }
+
+  const exitManageMode = () => {
+    setManageMode(false);
   }
 
   const auth = isAuth ? authPin : false;
@@ -167,12 +173,7 @@ function Bucketlist( { appState }) {
           {
             authDisplay(<DestinationSearch appState={appState} authPin={authPin} />)
           }
-        <BucketlistLocationsList auth={auth} appState={appState} locations={bucketlist.bucketlist_destinations} />
-        {
-          !isAuth ?
-            <Manage bucketlistId={bucketlist.id} />
-          : ''
-        }
+          <Manage bucketlistId={bucketlist.id} isAuth={isAuth} manageMode={manageMode} setManageMode={setManageMode} exitManageMode={exitManageMode} />
       </>
     )
   }
