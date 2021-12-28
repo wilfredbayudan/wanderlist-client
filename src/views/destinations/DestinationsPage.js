@@ -22,12 +22,12 @@ const DestinationsPage = ({ appState }) => {
     { label: "Alphabetically (A-Z)", value: "alphaAsc" },
     { label: "Alphabetically (Z-A)", value: "alphaDesc" },
     { label: "Most Seen", value: "sizeDesc" },
-    { label: "Least Least", value: "sizeAsc" },
+    { label: "Least Seen", value: "sizeAsc" },
     { label: "Most Liked", value: "likedDesc" },
     { label: "Least Liked", value: "likedAsc" }
   ]
 
-  const [sort, setSort] = useState(sortOptions[0].value)
+  const [sort, setSort] = useState('sizeDesc')
 
   const [search, setSearch] = useState('');
 
