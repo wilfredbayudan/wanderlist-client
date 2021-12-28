@@ -11,6 +11,7 @@ import { TextField } from '@mui/material';
 const ManageContainer = styled.div`
   text-align: center;
   margin-top: 10px;
+  margin-bottom: 10px;
 `;
 
 const ManageSpan = styled.span`
