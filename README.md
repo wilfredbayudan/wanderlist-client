@@ -4,6 +4,8 @@ Wanderlist is a web-based app that helps travelers and aspiring travelers share 
 
 For a live demo, visit [https://wanderlist.jaybayudan.com](https://wanderlist.jaybayudan.com)
 
+![Wanderlist Demo](preview.gif)
+
 ## Technologies
 * JavaScript / React
 * Ruby / Sinatra
@@ -49,8 +51,12 @@ Have fun!
 ### Routes
 * `/` - **Homepage**
 
-The homepage renders a collection of markers on a map. Each marker represents a destination that has been added to a bucketlist. Clicking on a marker will reveal additional details about the destination such as the name of the location, it's coordinates, how many bucketlists it has been added to, as well as the ability to like the destination.
+The homepage renders a collection of markers on a map. Each marker represents a destination that has been added to a bucketlist. Clicking on a marker will reveal a popup with additional details on the destination, as well as the ability to 'like' it.
+
 * `/bucketlists` - **Bucketlists**
+
+The Bucketlists page retrieves a list of all created bucketlists. When a user hovers over a bucketlist, markers are rendered on the map to preview the destinations that are included in that bucketlist. Clicking on a bucketlist will navigate the user to the details page for that specific bucketlist. ('/bucketlists/:id')
+
 * `/bucketlists/:id` - **Bucketlist Details**
 * `/bucketlists/new` - **New Bucketlist**
 * `/destinations` - **Destinations**
