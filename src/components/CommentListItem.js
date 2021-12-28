@@ -16,7 +16,7 @@ const DeleteIcon = styled(DeleteForever)`
   }
 `;
 
-const CommentListItem = ({ comment, source, setSource }) => {
+const CommentListItem = ({ comment, source, setSource, isAuth }) => {
 
   console.log(comment)
 

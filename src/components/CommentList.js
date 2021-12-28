@@ -19,7 +19,7 @@ const DeleteIcon = styled(DeleteForever)`
   }
 `;
 
-const CommentList = ({ comments, source, setSource }) => {
+const CommentList = ({ comments, source, setSource, isAuth }) => {
 
   const handleDelete = (id) => {
     fetch(`${process.env.REACT_APP_WANDERLIST_API}/bucketlists/${source.id}/comments/${id}`, {
@@ -49,7 +49,7 @@ const CommentList = ({ comments, source, setSource }) => {
             primary={comment.comment}
             secondary={`Posted ${timeAgo(comment.created_at)} by ${commentAuthor}`}
           />
-          {comment.author ? <DeleteIcon onClick={() => handleDelete(comment.id)} /> : ''}
+          {comment.author || isAuth ? <DeleteIcon onClick={() => handleDelete(comment.id)} /> : ''}
         </ListItem>
         <Divider variant="inset" component="li" />
       </Collapse>

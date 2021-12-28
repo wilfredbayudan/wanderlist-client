@@ -19,7 +19,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const CommentDialog = ({ source, setSource, type, showComments, setShowComments }) => {
+const CommentDialog = ({ source, setSource, type, showComments, setShowComments, isAuth }) => {
 
   const handleClose = () => {
     setShowComments(false);
@@ -42,7 +42,7 @@ const CommentDialog = ({ source, setSource, type, showComments, setShowComments 
         </DialogTitle>
         <DialogContent>
           <CommentForm source={source} setSource={setSource} />
-          <CommentList comments={source.comments} source={source} setSource={setSource} />
+          <CommentList comments={source.comments} source={source} setSource={setSource} isAuth={isAuth} />
         </DialogContent>
       </Dialog>
   );

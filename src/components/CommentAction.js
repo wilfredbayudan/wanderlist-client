@@ -3,7 +3,7 @@ import { IconButton } from '@mui/material';
 import { Comment } from '@mui/icons-material';
 import CommentDialog from './CommentDialog';
 
-const CommentAction = ({ source, setSource, type }) => {
+const CommentAction = ({ source, setSource, type, isAuth }) => {
   
   const [showComments, setShowComments] = useState(false);
 
@@ -19,6 +19,7 @@ const CommentAction = ({ source, setSource, type }) => {
         type={type}
         showComments={showComments}
         setShowComments={setShowComments}
+        isAuth={isAuth}
       />
     </>
   )

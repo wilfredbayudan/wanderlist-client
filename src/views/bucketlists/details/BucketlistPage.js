@@ -161,7 +161,7 @@ function Bucketlist( { appState }) {
           <CreatedAt>Added {createdAt} by <b>{bucketlist.created_by}</b></CreatedAt>
           <Actions>
             <BucketlistLike appState={appState} />
-            <CommentAction source={bucketlist} setSource={setBucketlist} type="bucketlist" />
+            <CommentAction source={bucketlist} setSource={setBucketlist} type="bucketlist" isAuth={auth} />
           </Actions>
         </BucketlistHeader>
           {
