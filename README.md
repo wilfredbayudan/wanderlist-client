@@ -2,6 +2,8 @@
 
 Wanderlist is a web-based app that helps travelers and aspiring travelers share ideas on destinations they should visit.
 
+For a live demo, visit [https://wanderlist.jaybayudan.com](https://wanderlist.jaybayudan.com)
+
 ## Technologies
 * JavaScript / React
 * Ruby / Sinatra
@@ -37,7 +39,8 @@ REACT_APP_POSITIONSTACK_KEY=YOUR POSITIONSTACK API KEY HERE
 REACT_APP_MAPBOX_ACCESS_TOKEN=YOUR ACCESS TOKEN HERE
 ```
 4. Run `npm install` in the Terminal to install dependencies.
-5. Run `npm start` in the Terminal to start the Wanderlist App. By default, you will be able to view the app at [http://localhost:3000](http://localhost:3000). 
+5. Ensure the Sinatra server is running.
+6. Run `npm start` in the Terminal to start the Wanderlist App. By default, you will be able to view the app at [http://localhost:3000](http://localhost:3000). 
 
 Have fun!
 
