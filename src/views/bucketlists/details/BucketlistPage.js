@@ -173,6 +173,7 @@ function Bucketlist( { appState }) {
           {
             authDisplay(<DestinationSearch appState={appState} authPin={authPin} />)
           }
+          <BucketlistLocationsList appState={appState} locations={bucketlist.bucketlist_destinations} auth={auth} />
           <Manage bucketlistId={bucketlist.id} isAuth={isAuth} manageMode={manageMode} setManageMode={setManageMode} exitManageMode={exitManageMode} />
       </>
     )
