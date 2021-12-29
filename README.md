@@ -28,21 +28,25 @@ Wanderlist is a web-based app that encourages travelers to share ideas on destin
 - [x] Interactive map integration with markers and popups
 
 ## Installation
-**IMPORTANT!** Clone and install the [backend repository](https://github.com/wilfredbayudan/wanderlist-server) for this project before proceeding.
+### Prerequisites
+Before you continue, ensure you have met the following requirements:
+* You have installed the latest version of Node.js and NPM
+* You have signed-up and created free API keys for [PositionStack](https://positionstack.com/) and [MapBox](https://www.mapbox.com/).
+* You have cloned and installed the [backend repository](https://github.com/wilfredbayudan/wanderlist-server) for this project before proceeding.
+
 1. Clone this repository.
-2. Sign-up and create free API keys for [PositionStack](https://positionstack.com/) and [MapBox](https://www.mapbox.com/).
-3. Create a file called `.env.development` in the root directory (for local development purposes) or use the following example to set your production environment variables:
+2. Create a file called `.env.development` in the root directory (for local development purposes) or use the following example to set your production environment variables:
 
 ```
 // .env.development
-REACT_APP_WANDERLIST_API=YOUR WANDERLIST API URL HERE (ie. http://localhost:9292)
-REACT_APP_WANDERLIST_URL=YOUR REACT APP URL HERE (ie. http://localhost:3000)
-REACT_APP_POSITIONSTACK_KEY=YOUR POSITIONSTACK API KEY HERE
-REACT_APP_MAPBOX_ACCESS_TOKEN=YOUR ACCESS TOKEN HERE
+REACT_APP_WANDERLIST_API=[YOUR WANDERLIST API URL HERE] (ie. http://localhost:9292)
+REACT_APP_WANDERLIST_URL=[YOUR REACT APP URL HERE] (ie. http://localhost:3000)
+REACT_APP_POSITIONSTACK_KEY=[YOUR POSITIONSTACK API KEY HERE]
+REACT_APP_MAPBOX_ACCESS_TOKEN=[YOUR ACCESS TOKEN HERE]
 ```
-4. Run `npm install` in the Terminal to install dependencies.
-5. Ensure the Sinatra server is running.
-6. Run `npm start` in the Terminal to start the Wanderlist App. By default, you will be able to view the app at [http://localhost:3000](http://localhost:3000). 
+3. Run `npm install` in the Terminal to install dependencies.
+4. Ensure the Sinatra backend server is running.
+5. Run `npm start` in the Terminal to start the Wanderlist App. By default, you will be able to view the app at [http://localhost:3000](http://localhost:3000). 
 
 Have fun!
 
@@ -59,7 +63,7 @@ The Bucketlists page retrieves a list of all created bucketlists. When a user ho
 
 * `/bucketlists/:id` - **Bucketlist Details**
 
-The Bucketlists Details page will fetch additional data about a specific bucketlist. The user may like/dislike the bucketlist, add comments, and view any notes that the author included with their destinations. If the correct PIN is passed as a parameter in the URL (ie. '/bucketlists/1?pin=1234'), the user will also be able to manage the bucketlist (Edit description, add/delete/edit destinations, delete entire list).
+The Bucketlists Details page will fetch additional data about a specific bucketlist. The user may like/dislike the bucketlist, post comments, and view any notes that the author included with their destinations. If the correct PIN is passed as a parameter in the URL (ie. '/bucketlists/1?pin=1234'), the user will be able to manage the bucketlist (Edit description, add/delete/edit destinations, delete entire list).
 
 * `/bucketlists/new` - **New Bucketlist**
 * `/destinations` - **Destinations**
