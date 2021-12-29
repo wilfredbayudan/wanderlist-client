@@ -41,7 +41,7 @@ color: #a92e12;
 
 function BucketlistLocationsListItem({ location, markerNum, appState, auth, manageMode }) {
 
-  const { viewport, setViewport, bucketlist, setBucketlist, setLoaderStatus, bucketlists, setBucketlists, setPopup } = appState;
+  const { viewport, setViewport, bucketlist, setBucketlist, setLoaderStatus, bucketlists, setBucketlists, setPopup, destinations, setDestinations } = appState;
 
   const [deleteDialog, setDeleteDialog] = useState(false);
 
@@ -69,7 +69,18 @@ function BucketlistLocationsListItem({ location, markerNum, appState, auth, mana
     })
       .then(res => res.json())
       .then(json => {
-        setLoaderStatus(false);  
+        console.log(json);
+        setLoaderStatus(false);
+        setDestinations(destinations.map(filteredDestination => {
+          if (filteredDestination.id === json.destination_id) {
+            return {
+              ...filteredDestination,
+              bucketlists: filteredDestination.bucketlists.filter(filterList => filterList.id !== bucketlist.id)
+            }
+          } else {
+            return filteredDestination;
+          }
+        }))
         setBucketlist({
           ...bucketlist,
           bucketlist_destinations: bucketlist.bucketlist_destinations.filter(location => location.id !== json.id)

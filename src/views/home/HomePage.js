@@ -15,7 +15,7 @@ const HomePage = ({ appState }) => {
 
   useEffect(() => {
     if (destinations) {
-      setMarkers(destinations.map(destination => {
+      setMarkers(destinations.filter(filterDestination => filterDestination.bucketlists.length > 0).map(destination => {
         return {
           ...destination,
           color: generateMarkerColor()

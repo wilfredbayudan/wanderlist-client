@@ -67,7 +67,7 @@ const DestinationsPage = ({ appState }) => {
 
   if (destinations) {
 
-    let filteredDestinations = sortDestinations(destinations, sort);
+    let filteredDestinations = sortDestinations(destinations, sort).filter(filterDestination => filterDestination.bucketlists.length > 0);
 
     if (search.length > 0) {
       filteredDestinations = filteredDestinations.filter(destination => destination.label.toLowerCase().includes(search.toLowerCase()));

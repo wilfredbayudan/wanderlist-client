@@ -28,7 +28,7 @@ const ManageSpan = styled.span`
   }
 `;
 
-const DeleteDialog = ({ bucketlistId, isAuth, exitManageMode, manageMode, setManageMode }) => {
+const Manage = ({ bucketlistId, isAuth, exitManageMode, manageMode, setManageMode }) => {
 
   const [manageDialog, setManageDialog] = useState(false);
   const [pinInput, setPinInput] = useState('');
@@ -136,4 +136,4 @@ const DeleteDialog = ({ bucketlistId, isAuth, exitManageMode, manageMode, setMan
   );
 }
 
-export default DeleteDialog;
+export default Manage;
