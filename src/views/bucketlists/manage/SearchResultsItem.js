@@ -63,7 +63,6 @@ const SearchResultsItem = ({ appState, location, authPin }) => {
     })
       .then(res => res.json())
       .then(json => {
-        console.log(json)
         setBucketlist({
           ...bucketlist,
           bucketlist_destinations: [
