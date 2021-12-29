@@ -1,6 +1,6 @@
 # Wanderlist
 
-Wanderlist is a web-based app that encourages travelers to share ideas on destinations they should add to their next trip. Users may view bucketlists, interact with them through likes and comments, or create and share their own.
+Wanderlist is a web-based app that allows users to share lists of travel destinations. Users may view bucketlists, interact with them through likes and comments, or create and share their own.
 
 Live Demo at https://wanderlist.jaybayudan.com
 
