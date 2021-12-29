@@ -25,7 +25,7 @@ Live Demo at https://wanderlist.jaybayudan.com
 ## Installation
 ### Prerequisites
 Before you continue, ensure you have met the following requirements:
-* You have installed the latest version of Node.js and NPM
+* You have installed the latest version of [Node.js and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 * You have signed-up for free API keys from [PositionStack](https://positionstack.com/) and [MapBox](https://www.mapbox.com/).
 * You have cloned and installed the [backend repository](https://github.com/wilfredbayudan/wanderlist-server) for this project before proceeding.
 ---
