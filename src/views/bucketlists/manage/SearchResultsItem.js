@@ -80,7 +80,6 @@ const SearchResultsItem = ({ appState, location, authPin }) => {
               ]
             }
           }
-          console.log(json)
           return mappedList;
         }))
         if (!destinations.find(searchDestination => searchDestination.id === json.destination.id)) {
