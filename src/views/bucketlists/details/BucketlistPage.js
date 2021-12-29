@@ -161,7 +161,7 @@ function Bucketlist( { appState }) {
             }
           </Name>
           { 
-            authDisplay(<ManageUrl manageUrl={`${process.env.REACT_APP_WANDERLIST_URL}/bucketlists/${bucketlist.id}?pin=${authPin}`} />)
+            authDisplay(<ManageUrl manageUrl={`${process.env.REACT_APP_WANDERLIST_URL}/bucketlists/${bucketlist.id}?pin=${bucketlist.pin}`} />)
           }
           <Description appState={appState} description={bucketlist.description} auth={auth} />
           <CreatedAt>Added {createdAt} by <b>{bucketlist.created_by}</b></CreatedAt>
