@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import WanderlistLogo from '../assets/images/logo.png';
 import MobileNav from './MobileNav';
 
@@ -22,6 +22,7 @@ const StyledHeader = styled.header`
 
 const Logo = styled.img`
   height: 100%;
+  cursor: pointer;
 `;
 
 const NavBar = styled.div`
@@ -47,10 +48,18 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-const Header = () => {
+const Header = ({ setDisplayContent }) => {
+
+  const navigate = useNavigate();
+
+  const handleLogoClick = () => {
+    setDisplayContent(false);
+    navigate('/');
+  };
+
   return (
     <StyledHeader>
-      <Logo src={WanderlistLogo} />
+      <Logo src={WanderlistLogo} onClick={handleLogoClick} />
       <NavBar>
         <StyledNavLink to="/bucketlists">Bucketlists</StyledNavLink> | 
         <StyledNavLink to="/destinations">Destinations</StyledNavLink> |
