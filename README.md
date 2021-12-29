@@ -31,7 +31,7 @@ Wanderlist is a web-based app that encourages travelers to share ideas on destin
 ### Prerequisites
 Before you continue, ensure you have met the following requirements:
 * You have installed the latest version of Node.js and NPM
-* You have signed-up and created free API keys for [PositionStack](https://positionstack.com/) and [MapBox](https://www.mapbox.com/).
+* You have signed-up for free API keys from [PositionStack](https://positionstack.com/) and [MapBox](https://www.mapbox.com/).
 * You have cloned and installed the [backend repository](https://github.com/wilfredbayudan/wanderlist-server) for this project before proceeding.
 
 1. Clone this repository.
