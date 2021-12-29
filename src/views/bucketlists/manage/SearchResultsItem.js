@@ -57,7 +57,7 @@ const SearchResultsItem = ({ appState, location, authPin }) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'PIN': authPin
+        'PIN': bucketlist.pin
       },
       body: JSON.stringify(postBody)
     })

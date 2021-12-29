@@ -16,7 +16,7 @@ const DeleteIcon = styled(DeleteForever)`
 
 const DeleteBucketlist = ({ appState, authPin }) => {
 
-  const { setBucketlist, setCurrentList, setMarkers, bucketlist, bucketlists, setBucketlists } = appState;
+  const { setCurrentList, setMarkers, bucketlist, bucketlists, setBucketlists, setDialog } = appState;
 
   const [confirmPrompt, setConfirmPrompt] = useState(false);
   const [deleteDisabled, setDeleteDisabled] = useState(true);
@@ -44,12 +44,12 @@ const DeleteBucketlist = ({ appState, authPin }) => {
     })
       .then(res => res.json())
       .then(json => {
-        navigate('/bucketlists')
-        setBucketlist(null);
+        navigate('/bucketlists');
         setBucketlists(bucketlists.filter(filteredList => filteredList.id !== json.id));
         handleClose();
         setCurrentList(null);
         setMarkers([]);
+        setDialog('Bucketlist deleted!')
       })
       .catch(err => console.log(err));
   }

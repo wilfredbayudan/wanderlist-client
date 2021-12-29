@@ -64,7 +64,7 @@ const Description = ({ appState, description, auth, manageMode }) => {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'PIN': auth
+        'PIN': bucketlist.pin
       },
       body: JSON.stringify({
         ...updatedBucketlist,
@@ -116,7 +116,7 @@ const Description = ({ appState, description, auth, manageMode }) => {
   return (
     <DescriptionDiv>
       {editMode && manageMode ? renderEditMode() : description}
-      {auth && !editMode? <EditIcon onClick={toggleEdit} /> : null}
+      {auth && !editMode && manageMode ? <EditIcon onClick={toggleEdit} /> : null}
       <Clear />
     </DescriptionDiv>
   )

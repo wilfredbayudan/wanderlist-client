@@ -145,7 +145,7 @@ function Bucketlist( { appState }) {
     setManageMode(false);
   }
 
-  const auth = isAuth ? authPin : false;
+  const auth = isAuth;
 
   if (bucketlist && bucketlist.id === parseInt(params.id)) {
 

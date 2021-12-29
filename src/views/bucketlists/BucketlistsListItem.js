@@ -72,7 +72,7 @@ const BucketlistsListItem = ( { appState: { setPopup, bucketlist, setLoaderStatu
 
   function handleClick() {
     if (bucketlist && bucketlist.id === selectedBucketlist.id) {
-      navigate(`/bucketlists/${selectedBucketlist.id}${selectedBucketlist.pin ? `?pin=${selectedBucketlist.pin}` : ''}`);
+      navigate(`/bucketlists/${selectedBucketlist.id}`);
       return;
     }
     setLoaderStatus(true);
