@@ -104,7 +104,7 @@ function BucketlistLocationsListItem({ location, markerNum, appState, auth, mana
         id="panel1a-header"
       >
         <StyledTypography><span>{markerNum}. {location.destination.label}</span> 
-        { manageMode ? <DeleteLocationIcon onClick={handleDeleteConfirm} /> : '' }
+        { manageMode && auth ? <DeleteLocationIcon onClick={handleDeleteConfirm} /> : '' }
         </StyledTypography>
       </AccordionSummary>
       <AccordionDetails>

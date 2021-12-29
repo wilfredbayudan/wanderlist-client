@@ -66,7 +66,6 @@ const LocationNotes = ({ location, appState, auth, manageMode }) => {
     })
       .then(res => res.json())
       .then(json => {
-        console.log(json);
         setBucketlist({
           ...bucketlist,
           bucketlist_destinations: bucketlist.bucketlist_destinations.map(mappedDestination => {
@@ -128,7 +127,7 @@ const LocationNotes = ({ location, appState, auth, manageMode }) => {
   return (
     <Notes>
       {editMode && manageMode ? renderEditMode() : notes}
-      {manageMode && !editMode ? <><EditIcon onClick={toggleEdit} /><Clear /></> : null  }
+      {manageMode && !editMode && auth ? <><EditIcon onClick={toggleEdit} /><Clear /></> : null  }
     </Notes>
   )
 
