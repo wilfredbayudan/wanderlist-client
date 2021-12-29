@@ -57,7 +57,6 @@ function NewBucketlistPage({ appState: { setDisplayContent, bucketlists, setBuck
       .then(res => res.json())
       .then(json => {
         setLoading(false);
-        console.log(json);
         setBucketlists([
           ...bucketlists,
           {
