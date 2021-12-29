@@ -126,7 +126,7 @@ const LocationNotes = ({ location, appState, auth, manageMode }) => {
 
   return (
     <Notes>
-      {editMode ? renderEditMode() : notes}
+      {editMode && manageMode ? renderEditMode() : notes}
       {manageMode ? <><EditIcon onClick={toggleEdit} /><Clear /></> : null  }
     </Notes>
   )
