@@ -6,11 +6,6 @@ Live Demo at https://wanderlist.jaybayudan.com
 
 ![Wanderlist Demo](preview.gif)
 
-## Technologies
-* JavaScript / React
-* Ruby / Sinatra
-* SQLite 
-
 ## APIs
 * [MapBox](https://www.mapbox.com/)
 * [PositionStack](https://positionstack.com/)
