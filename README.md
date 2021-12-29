@@ -28,7 +28,7 @@ Before you continue, ensure you have met the following requirements:
 * You have installed the latest version of Node.js and NPM
 * You have signed-up for free API keys from [PositionStack](https://positionstack.com/) and [MapBox](https://www.mapbox.com/).
 * You have cloned and installed the [backend repository](https://github.com/wilfredbayudan/wanderlist-server) for this project before proceeding.
-
+---
 1. Clone this repository.
 2. Create a file called `.env.development` in the root directory (for local development purposes) or use the following example to set your production environment variables:
 
