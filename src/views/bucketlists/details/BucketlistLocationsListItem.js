@@ -39,7 +39,7 @@ color: #a92e12;
   }
 `;
 
-function BucketlistLocationsListItem({ location, markerNum, appState, auth }) {
+function BucketlistLocationsListItem({ location, markerNum, appState, auth, manageMode }) {
 
   const { viewport, setViewport, bucketlist, setBucketlist, setLoaderStatus, bucketlists, setBucketlists, setPopup } = appState;
 
@@ -104,11 +104,11 @@ function BucketlistLocationsListItem({ location, markerNum, appState, auth }) {
         id="panel1a-header"
       >
         <StyledTypography><span>{markerNum}. {location.destination.label}</span> 
-        { auth ? <DeleteLocationIcon onClick={handleDeleteConfirm} /> : '' }
+        { manageMode ? <DeleteLocationIcon onClick={handleDeleteConfirm} /> : '' }
         </StyledTypography>
       </AccordionSummary>
       <AccordionDetails>
-        <LocationNotes location={location} appState={appState} auth={auth} />
+        <LocationNotes manageMode={manageMode} location={location} appState={appState} auth={auth} />
       </AccordionDetails>
       <DeleteDialog label={location.destination.label} deleteDialog={deleteDialog} setDeleteDialog={setDeleteDialog} handleDelete={handleDelete} />
     </StyledAccordion>

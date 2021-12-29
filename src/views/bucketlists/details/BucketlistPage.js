@@ -163,7 +163,7 @@ function Bucketlist( { appState }) {
           { 
             authDisplay(<ManageUrl manageUrl={`${process.env.REACT_APP_WANDERLIST_URL}/bucketlists/${bucketlist.id}?pin=${bucketlist.pin}`} />)
           }
-          <Description appState={appState} description={bucketlist.description} auth={auth} />
+          <Description appState={appState} description={bucketlist.description} auth={auth} manageMode={manageMode} />
           <CreatedAt>Added {createdAt} by <b>{bucketlist.created_by}</b></CreatedAt>
           <Actions>
             <BucketlistLike appState={appState} />
@@ -173,7 +173,7 @@ function Bucketlist( { appState }) {
           {
             authDisplay(<DestinationSearch appState={appState} authPin={authPin} />)
           }
-          <BucketlistLocationsList appState={appState} locations={bucketlist.bucketlist_destinations} auth={auth} />
+          <BucketlistLocationsList manageMode={manageMode} appState={appState} locations={bucketlist.bucketlist_destinations} auth={auth} />
           <Manage bucketlistId={bucketlist.id} isAuth={isAuth} manageMode={manageMode} setManageMode={setManageMode} exitManageMode={exitManageMode} />
       </>
     )

@@ -35,7 +35,7 @@ const EditButton = styled(LoadingButton)`
 
 `;
 
-const Description = ({ appState, description, auth }) => {
+const Description = ({ appState, description, auth, manageMode }) => {
 
   const [editMode, setEditMode] = useState(false); 
   const [editInput, setEditInput] = useState(description);
@@ -115,7 +115,7 @@ const Description = ({ appState, description, auth }) => {
 
   return (
     <DescriptionDiv>
-      {editMode ? renderEditMode() : description}
+      {editMode && manageMode ? renderEditMode() : description}
       {auth && !editMode? <EditIcon onClick={toggleEdit} /> : null}
       <Clear />
     </DescriptionDiv>

@@ -35,7 +35,7 @@ const AddSpan = styled.span`
   cursor: pointer;
 `;
 
-const LocationNotes = ({ location, appState, auth }) => {
+const LocationNotes = ({ location, appState, auth, manageMode }) => {
 
   const { bucketlist, setBucketlist, bucketlists, setBucketlists } = appState;
 
@@ -127,7 +127,7 @@ const LocationNotes = ({ location, appState, auth }) => {
   return (
     <Notes>
       {editMode ? renderEditMode() : notes}
-      { auth && !editMode? <><EditIcon onClick={toggleEdit} /><Clear /></> : null  }
+      {manageMode ? <><EditIcon onClick={toggleEdit} /><Clear /></> : null  }
     </Notes>
   )
 
