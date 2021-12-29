@@ -22,7 +22,7 @@ const MarkerSpan = styled.span`
   width: 30px;
   height: 30px;
   color:#fff;
-  background: #9575d5;
+  background: ${props => props.color};
   /* background: #9575d5; */
   border:solid 2px;
   border-radius: 0 70% 70%;
