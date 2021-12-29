@@ -58,7 +58,7 @@ The Bucketlists page retrieves a list of all created bucketlists. The user may s
 
 * `/bucketlists/:id` - **Bucketlist Details**
 
-The Bucketlists Details page will fetch additional data about a specific bucketlist. The user may like/dislike the bucketlist, post comments, and view any notes that the author included with their destinations. If the correct PIN is passed as a parameter in the URL (ie. '/bucketlists/1?pin=1234'), the user will be able to manage the bucketlist (Edit description, add/delete/edit destinations, delete entire list).
+The Bucketlists Details page will fetch additional data about a specific bucketlist. The user may like/dislike the bucketlist, post comments, and view any notes that the author included with their destinations. If the correct PIN is passed as a parameter in the URL (ie. '/bucketlists/1?pin=1234'), the user will be able to manage the bucketlist (Edit description, add/delete/edit destinations, delete entire list). A "Manage this Listing" button has also been added to the page for added functionality.
 
 * `/bucketlists/new` - **New Bucketlist**
 
