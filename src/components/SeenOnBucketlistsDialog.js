@@ -30,9 +30,7 @@ const SeenOnBucketlistsDialog = ({ destination, showSeenOn, setShowSeenOn, appSt
 
   const navigate = useNavigate();
   const location = useLocation();
-
-  console.log(location.pathname);
-
+  
   const handleClose = () => {
     setShowSeenOn(false);
   };
