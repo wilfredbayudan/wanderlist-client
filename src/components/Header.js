@@ -48,12 +48,11 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-const Header = ({ setDisplayContent }) => {
+const Header = () => {
 
   const navigate = useNavigate();
 
   const handleLogoClick = () => {
-    setDisplayContent(false);
     navigate('/');
   };
 

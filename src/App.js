@@ -69,7 +69,7 @@ const App = () => {
     <BrowserRouter>
       <LoaderOverlay loaderStatus={loaderStatus} />
       <DialogOverlay appState={appState} />
-      <Header setDisplayContent={setDisplayContent} />
+      <Header />
       <MainContent displayContent={displayContent} setDisplayContent={setDisplayContent}>
         <Routes>
           <Route exact path="/" element={<HomePage appState={appState} />} />

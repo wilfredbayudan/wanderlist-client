@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 const HomePage = ({ appState }) => {
   
-  const { setMarkers, destinations } = appState;
+  const { setMarkers, destinations, setCurrentList, setDisplayContent } = appState;
 
   // const generateMarkerColor = () => {
   //   let letters = '0123456789ABCDEF';
@@ -27,6 +27,8 @@ const HomePage = ({ appState }) => {
   }
 
   useEffect(() => {
+    setCurrentList(null);
+    setDisplayContent(false);
     if (destinations) {
       setMarkers(destinations.filter(filterDestination => filterDestination.bucketlists.length > 0).map(destination => {
         return {
@@ -35,7 +37,7 @@ const HomePage = ({ appState }) => {
         }
       }));
     }
-  }, [setMarkers, destinations])
+  }, [setMarkers, destinations, setCurrentList, setDisplayContent])
 
   return (
     <></>
