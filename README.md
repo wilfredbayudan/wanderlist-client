@@ -1,6 +1,6 @@
 # Wanderlist App
 
-Wanderlist is a web-based app that encourages travelers to share ideas on destinations they should add to their next trip.
+Wanderlist is a web-based app that encourages travelers to share ideas on destinations they should add to their next trip. Users may view bucketlists, interact with them through likes and comments, or share their own.
 
 [Live Demo](https://wanderlist.jaybayudan.com)
 
@@ -42,7 +42,7 @@ Before you continue, ensure you have met the following requirements:
 REACT_APP_WANDERLIST_API=[YOUR WANDERLIST API URL HERE] (ie. http://localhost:9292)
 REACT_APP_WANDERLIST_URL=[YOUR REACT APP URL HERE] (ie. http://localhost:3000)
 REACT_APP_POSITIONSTACK_KEY=[YOUR POSITIONSTACK API KEY HERE]
-REACT_APP_MAPBOX_ACCESS_TOKEN=[YOUR ACCESS TOKEN HERE]
+REACT_APP_MAPBOX_ACCESS_TOKEN=[YOUR MAPBOX ACCESS TOKEN HERE]
 ```
 3. Run `npm install` in the Terminal to install dependencies.
 4. Ensure the Sinatra backend server is running.
