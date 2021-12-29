@@ -64,7 +64,7 @@ function BucketlistLocationsListItem({ location, markerNum, appState, auth, mana
     fetch(`${process.env.REACT_APP_WANDERLIST_API}/bucketlists/${bucketlist.id}/destinations/${location.id}`, {
       method: 'DELETE',
       headers: {
-        'PIN': auth,
+        'PIN': bucketlist.pin,
       }
     })
       .then(res => res.json())

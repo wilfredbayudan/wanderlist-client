@@ -60,12 +60,13 @@ const LocationNotes = ({ location, appState, auth, manageMode }) => {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'PIN': auth
+        'PIN': bucketlist.pin
       },
       body: JSON.stringify({notes: editInput})
     })
       .then(res => res.json())
       .then(json => {
+        console.log(json);
         setBucketlist({
           ...bucketlist,
           bucketlist_destinations: bucketlist.bucketlist_destinations.map(mappedDestination => {
@@ -127,7 +128,7 @@ const LocationNotes = ({ location, appState, auth, manageMode }) => {
   return (
     <Notes>
       {editMode && manageMode ? renderEditMode() : notes}
-      {manageMode ? <><EditIcon onClick={toggleEdit} /><Clear /></> : null  }
+      {manageMode && !editMode ? <><EditIcon onClick={toggleEdit} /><Clear /></> : null  }
     </Notes>
   )
 
