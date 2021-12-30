@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import LoaderOverlay from '../../components/LoaderOverlay';
 
 const HomePage = ({ appState }) => {
   
@@ -39,9 +40,11 @@ const HomePage = ({ appState }) => {
     }
   }, [setMarkers, destinations, setCurrentList, setDisplayContent])
 
-  return (
-    <></>
-  )
+  if (destinations) {
+    return <></>
+  }
+
+  return <LoaderOverlay loaderStatus="Fetching destinations..." />
 };
 
 export default HomePage;
