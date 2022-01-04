@@ -66,7 +66,7 @@ function Bucketlist( { appState }) {
     setPopup(false);
     if (bucketlists && bucketlist) {
       const selectedList = bucketlists.find(findList => findList.id === parseInt(params.id));
-      if ("pin" in selectedList) {
+      if (selectedList && "pin" in selectedList) {
         setIsAuth(true);
         return;
       }
@@ -157,7 +157,7 @@ function Bucketlist( { appState }) {
           <Name>
             <h2>{bucketlist.name}</h2>
             {
-              authDisplay(<DeleteBucketlist appState={appState} authPin={authPin} />)
+              authDisplay(<DeleteBucketlist appState={appState} authPin={bucketlist.pin} />)
             }
           </Name>
           { 

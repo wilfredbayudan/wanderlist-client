@@ -39,15 +39,15 @@ const DeleteBucketlist = ({ appState, authPin }) => {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        'PIN': pinInput
+        'PIN': authPin
       },
     })
       .then(res => res.json())
       .then(json => {
+        handleClose();
         navigate('/bucketlists');
         setBucketlist({})
         setBucketlists(bucketlists.filter(filteredList => filteredList.id !== json.id));
-        handleClose();
         setCurrentList(null);
         setMarkers([]);
         setDialog('Bucketlist deleted!')
@@ -60,12 +60,12 @@ const DeleteBucketlist = ({ appState, authPin }) => {
   }
 
   useEffect(() => {
-    if (pinInput === bucketlist.pin) {
+    if (pinInput === authPin) {
       setDeleteDisabled(false);
     } else {
       setDeleteDisabled(true);
     }
-  }, [pinInput, bucketlist.pin, setDeleteDisabled]);
+  }, [pinInput, authPin, setDeleteDisabled]);
 
   return (
     <>
