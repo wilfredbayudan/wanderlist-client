@@ -1,3 +1,5 @@
+Check out the backend repo here: https://github.com/wilfredbayudan/wanderlist-server
+
 # Wanderlist (Frontend)
 
 Wanderlist is a web-based app that allows users to share lists of travel destinations. Users may view bucketlists, interact with them through likes and comments, or create and share their own.
