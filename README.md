@@ -1,4 +1,4 @@
-Check out the backend repo here: https://github.com/wilfredbayudan/wanderlist-server
+See [wanderlist-client](https://github.com/wilfredbayudan/wanderlist-client) for the frontend repository.
 
 # Wanderlist (Frontend)
 
